@@ -25,25 +25,36 @@ function App() {
       link.click();
     }; */
 
-  const handleDownload = async () => {
-    const activeDisplayRef = hoodieRefs[selectedView].current;
-
-    if (activeDisplayRef && designs[selectedView].src) {
-      const canvas = await html2canvas(activeDisplayRef, {
-        scale: 1,
-        useCORS: true,
-      });
-      const dataUrl = canvas.toDataURL('image/png');
+    const downloadImage = (dataUrl, filename) => {
       const link = document.createElement('a');
       link.href = dataUrl;
-      link.download = `custom-hoodie-${selectedView}.png`;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    } else {
-      console.error(`No design for ${selectedView} view or element not rendered`);
-    }
-  };
+    };
+  const handleDownload = async () => {
+  // Existing functionality to download the hoodie design
+  const activeDisplayRef = hoodieRefs[selectedView].current;
+
+  if (activeDisplayRef && designs[selectedView].src) {
+    const scale = window.devicePixelRatio; // Consider the device's pixel ratio
+    const canvas = await html2canvas(activeDisplayRef, {
+      scale: scale,
+      useCORS: true,
+    });
+    const dataUrl = canvas.toDataURL('image/png');
+    downloadImage(dataUrl, `custom-hoodie-${selectedView}.png`);
+  } else {
+    console.error(`No design for ${selectedView} view or element not rendered`);
+  }
+
+  // Call to download the original uploaded image
+  if (designs[selectedView].src) {
+    downloadImage(designs[selectedView].src, `original-design-${selectedView}.png`);
+  }
+};
+  
 
 
 
@@ -64,19 +75,19 @@ function App() {
   const handleImageUpload = (event) => {
     const file = event.target.files[0]; // Get the first file from the input event
     if (file) { // Check if the file exists
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setDesigns({
-                ...designs,
-                [selectedView]: { src: reader.result, x: 50, y: 50, scale: 1 },
-            });
-        };
-        reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setDesigns({
+          ...designs,
+          [selectedView]: { src: reader.result, x: 50, y: 50, scale: 1 },
+        });
+      };
+      reader.readAsDataURL(file);
     } else {
-        // Handle the case where no file is selected (optional)
-        console.log('No file selected.');
+      // Handle the case where no file is selected (optional)
+      console.log('No file selected.');
     }
-};
+  };
 
 
   function generateHoodiePaths(color) {
