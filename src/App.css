@@ -1,13 +1,28 @@
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    align-items: stretch; /* Stretch children to match the container's width */
+  }
+
+  .hoodie-container, .color-swatches-container {
+    width: 100%; /* Full width on smaller screens */
+    margin: 10px 0; /* Adjust margins for vertical layout */
+  }
+
+  .scale-slider input[type="range"] {
+    width: 100%; /* Full width for the slider */
+  }
+}
+
 .App {
   text-align: center;
 }
 
 .main-display {
-  position: relative;
-  width: 300px; /* Adjust based on actual image size */
+  width: 100%;
+  max-width: 300px; /* Adjust based on actual image size */
   margin: 20px auto;
-  overflow: visible; /* Ensure that overflow is not hidden */
-
+  overflow: visible;
 }
 
 
@@ -31,9 +46,10 @@
 }
 
 .thumbnail {
-  width: 50px; /* Adjust based on your preference */
-  margin: 0 10px;
-  cursor: pointer;
+  width: 10vw; /* Adjust based on your preference */
+  max-width: 50px;
+  min-width: 30px; /* Ensure thumbnails don't become too small */
+  margin: 0 5px; /* Adjust margin as needed */
 }
 
 .thumbnail:hover {
@@ -257,7 +273,8 @@ button {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-right: 10px;
-  
+  margin-top: 10px;
+
 }
 
 button:hover {
@@ -310,10 +327,9 @@ input[type="file"] {
 }
 .color-swatches-container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(40px, 1fr)); /* creates exactly 4 columns */
-  grid-gap: 5px; /* spacing between swatches */
-  justify-content: center; /* center the grid horizontally */
-  align-content: start; /* align the grid to the top */
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Creates as many columns as can fit */
+  grid-gap: 5px; /* Spacing between swatches */
+  justify-content: center;
 }
 
 .color-swatches-column {
