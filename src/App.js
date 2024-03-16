@@ -100,13 +100,13 @@ function App() {
     };
   }
 
-  const hoodieColors = ['white', 'black', 'sport_grey',/*  'ash', 'rock', 'sage',
+  const hoodieColors = ['white', 'black', 'sport_grey','Military_Green','Light_Blue','Light_Pink',/*  'ash', 'rock', 'sage',
     'Military_Green_Heather', 'Charcoal', 'Blush_Pink', 'Neon_Pink',
     'Sunset_Coral', 'Retro_Heather_Coral', 'Heliconia', 'Orange', ,
     'Heather_Sport_Scarlet_Red', 'Maroon', 'Red', 'Antique_Cherry_Red', 'Sweet_Cream_Heather', 'Sand',
-    'Khaki', 'Old_Gold', 'Neon_Orange', 'Dark_Brown', 'Gold', 'Neon_Yellow', 'Kiwi', 'Irish_Green',  */'Military_Green',
-    /* 'Forest_Green', 'Scuba_Blue' */, 'Light_Blue',/*  'Periwinkle_Blue', 'Vintage_Hth_Blue', 'Indigo_Blue',
-    'Royal', 'Navy', 'Violet', 'Purple',  */'Light_Pink'
+    'Khaki', 'Old_Gold', 'Neon_Orange', 'Dark_Brown', 'Gold', 'Neon_Yellow', 'Kiwi', 'Irish_Green',  */
+    /* 'Forest_Green', 'Scuba_Blue' *//*,  'Periwinkle_Blue', 'Vintage_Hth_Blue', 'Indigo_Blue',
+    'Royal', 'Navy', 'Violet', 'Purple',  */
   ];
 
   const hoodieImages = hoodieColors.reduce((acc, color) => {
