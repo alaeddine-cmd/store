@@ -100,7 +100,7 @@ function App() {
     };
   }
 
-  const hoodieColors = ['white', 'black', 'sport_grey','Military_Green','Light_Blue','Light_Pink',/*  'ash', 'rock', 'sage',
+  const hoodieColors = ['white', 'black', 'sport_grey','Green','Blue','Pink',/*  'ash', 'rock', 'sage',
     'Military_Green_Heather', 'Charcoal', 'Blush_Pink', 'Neon_Pink',
     'Sunset_Coral', 'Retro_Heather_Coral', 'Heliconia', 'Orange', ,
     'Heather_Sport_Scarlet_Red', 'Maroon', 'Red', 'Antique_Cherry_Red', 'Sweet_Cream_Heather', 'Sand',

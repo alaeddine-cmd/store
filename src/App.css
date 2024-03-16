@@ -167,9 +167,9 @@
 {
   background-color: #03a060;
 }
-.color-swatch.Military_Green
+.color-swatch.Green
 {
-  background-color: #50514c;
+  background-color: #50514c!important;
 }
 .color-swatch.Forest_Green
 {
@@ -180,9 +180,9 @@
 .color-swatch.Scuba_Blue
 {
   background-color: #65cbd3;
-}.color-swatch.Light_Blue
+}.color-swatch.Blue
 {
-  background-color: #b0bbd7;
+  background-color: #acb8d4!important;
 }.color-swatch.Periwinkle_Blue
 {
   background-color: #4b57a9;
@@ -209,9 +209,9 @@
 }.color-swatch.Purple
 {
   background-color: #542865;
-}.color-swatch.Light_Pink
+}.color-swatch.Pink
 {
-  background-color: #edc0cf;
+  background-color: #edc0cf!important;
 }
 
 
