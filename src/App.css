@@ -309,7 +309,7 @@ input[type="file"] {
 }
 .color-swatches-container {
   display: grid;
-  grid-template-columns: repeat(5, minmax(40px, 1fr)); /* creates exactly 4 columns */
+  grid-template-columns: repeat(2, minmax(40px, 1fr)); /* creates exactly 4 columns */
   grid-gap: 5px; /* spacing between swatches */
   justify-content: center; /* center the grid horizontally */
   align-content: start; /* align the grid to the top */
