@@ -84,7 +84,7 @@ const FemaleHoodie = () => {
             back: `${base}${formattedColor}_back_hoodie_fem.jpg`,
         };
     }
-    const hoodieColors = ['white', 'black', 'Mauve', 'green', 'PEACH', 'pink',
+    const hoodieColors = ['white', 'black', 'mauve', 'green', 'peach', 'pink',
     ];
     const hoodieImages = hoodieColors.reduce((acc, color) => {
         acc[color] = generateHoodiePaths(color);
