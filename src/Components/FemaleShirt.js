@@ -77,7 +77,7 @@ const FemaleShirt = () => {
         const formattedColor = color.replace(/_/g, '_').toLowerCase(); // Adjust formatting if necessary
         return {
             front: `${base}${formattedColor}_front_shirt_fem.jpg`,
-            side: `${base}${formattedColor} .jpg`,
+            side: `${base}${formattedColor}_side_shirt_fem.jpg`,
             back: `${base}${formattedColor}_back_shirt_fem.jpg`,
         };
     }
