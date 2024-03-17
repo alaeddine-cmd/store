@@ -344,7 +344,7 @@ input[type="file"] {
   display: flex;
   justify-content: center; /* Centers children horizontally */
   align-items: center; /* Centers children vertically */
-  height: 80vh; /* Set to the height of the viewport for vertical centering */
+  height: 100vh; /* Set to the height of the viewport for vertical centering */
 }
 
 

@@ -3,9 +3,9 @@ import './Examples.css';
 
 function Examples() {
     const [examples] = useState([
-        { id: 1, front: '/assets/rick-and-morty.png', side: '/assets/green_side_hoodie.jpg', back: '/assets/rick-and-morty-back.png' },
-        { id: 2, front: '/assets/rick-and-morty.png', side: '/assets/green_side_hoodie.jpg', back: '/assets/rick-and-morty-back.png' },
-        { id: 3, front: '/assets/rick-and-morty.png', side: '/assets/green_side_hoodie.jpg', back: '/assets/rick-and-morty-back.png' },
+        { id: 1, front: '/assets/black.png', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
+        { id: 2, front: '/assets/simpson.png', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
+        { id: 3, front: '/assets/blue.png', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
         { id: 4, front: '/assets/rick-and-morty.png', side: '/assets/green_side_hoodie.jpg', back: '/assets/rick-and-morty-back.png' },
 
         // Add other examples as necessary
