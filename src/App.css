@@ -1,401 +1,63 @@
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-    align-items: stretch; /* Stretch children to match the container's width */
-  }
-
-  .hoodie-container, .color-swatches-container {
-    width: 100%; /* Full width on smaller screens */
-    margin: 10px 0; /* Adjust margins for vertical layout */
-  }
-
-  .scale-slider input[type="range"] {
-    width: 100%; /* Full width for the slider */
-  }
-}
-
-.App {
+.App-header {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
   text-align: center;
 }
-
-.main-display {
-  position: relative;
-  width: 100%;
-  max-width: 300px; /* Adjust based on actual image size */
-  margin: 20px auto;
-  overflow: visible;
-}
-
-
-
-.hoodie-image {
-  width: 100%;
-  display: block;
-}
-
-.overlay-design {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 100px; /* Adjust based on design size */
-}
-
-.thumbnail-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.thumbnail {
-  width: 10vw; /* Adjust based on your preference */
-  max-width: 50px;
-  min-width: 30px; /* Ensure thumbnails don't become too small */
-  margin: 0 5px; /* Adjust margin as needed */
-}
-
-.thumbnail:hover {
-  opacity: 0.8;
-}
-
-.color-swatches {
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.color-swatch {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.color-swatch.white {
-  background-color: #ffffff;
-  border: 1px solid #ccc; /* Helps visualize the white swatch */
-}
-
-.color-swatch.black {
-  background-color: #000000;
-}
-
-.color-swatch.ash {
-  background-color: #e4dde3;
-}
-
-.color-swatch.sport_grey {
-  background-color: #b6b7ba;
-}
-.color-swatch.rock {
-  background-color: #95938e;
-}
-.color-swatch.sage {
-  background-color: #90adab;
-}
-.color-swatch.Military_Green_Heather
-{
-  background-color: #495148;
-}
-.color-swatch.Charcoal
-{
-  background-color: #3e3d43;
-}
-.color-swatch.Blush_Pink
-{
-  background-color: #d9b8af;
-}
-
-.color-swatch.Neon_Pink
-{
-  background-color: #f36c95;
-}
-
-.color-swatch.Sunset_Coral
-{
-  background-color: #e3585d;
-}
-
-.color-swatch.Retro_Heather_Coral
-{
-  background-color: #ff7f85;
-}
-
-.color-swatch.Heliconia
-{
-  background-color: #fa1377;
-}
-
-.color-swatch.Orange
-{
-  background-color: #ed6124;
-}
-
-.color-swatch.Heather_Sport_Scarlet_Red
-{
-  background-color: #b87e8b;
-}
-
-.color-swatch.Maroon
-{
-  background-color: #431c2e;
-}
-
-.color-swatch.Red
-{
-  background-color: #a90e15;
-}
-
-.color-swatch.Antique_Cherry_Red
-{
-  background-color: #95132f;
-}
-
-.color-swatch.Sweet_Cream_Heather
-{
-  background-color: #fffaeb;
-}
-.color-swatch.Sand
-{
-  background-color: #d3c6b6;
-}.color-swatch.Khaki
-{
-  background-color: #b5a488;
-}.color-swatch.Old_Gold
-{
-  background-color: #bb9759;
-}.color-swatch.Neon_Orange
-{
-  background-color: #f4732e;
-}.color-swatch.Dark_Brown
-{
-  background-color: #2d1e23;
-}.color-swatch.Gold
-{
-  background-color: #efba00;
-}.color-swatch.Neon_Yellow
-{
-  background-color: #d1df33;
-}.color-swatch.Kiwi
-{
-  background-color: #71b85e;
-}
-.color-swatch.Irish_Green
-{
-  background-color: #03a060;
-}
-.color-swatch.green
-{
-  background-color: #50514c!important;
-}
-.color-swatch.Forest_Green
-{
-  background-color: #132322;
-}
-
-
-.color-swatch.Scuba_Blue
-{
-  background-color: #65cbd3;
-}.color-swatch.blue
-{
-  background-color: #acb8d4!important;
-}.color-swatch.Periwinkle_Blue
-{
-  background-color: #4b57a9;
-}.color-swatch.Antique_Sapphire
-{
-  background-color: #02638d;
-}.color-swatch.Vintage_Hth_Blue
-{
-  background-color: #5d6b8d;
-}.color-swatch.Indigo_Blue
-{
-  background-color: #175a76;
-}.color-swatch.Royal
-{
-  background-color: #1f3481;
-}.color-swatch.Navy
-{
-  background-color: #10162e;
-}
-
-.color-swatch.Violet
-{
-  background-color: #695294!important;
-}.color-swatch.Purple
-{
-  background-color: #542865;
-}.color-swatch.pink
-{
-  background-color: #edc0cf!important;
-}
-
-
-
-.thumbnail.active {
-  border: 2px solid #585b5f; /* Indicates the active view */
-}
-
-/* Existing styles... */
-
-.overlay-design {
-  cursor: grab;
-}
-.react-resizable-handle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #000;
-  z-index: 10;
-}
-
-.react-resizable-handle-se {
-  right: 0;
-  bottom: 0;
-  cursor: se-resize;
-}
-
-.thumbnail.active {
-  border: 2px solid #585b5f;
-}
-
-/* Button styles */
-button {
-  padding: 10px 20px;
-  background-color: #313335; /* Change the background color as you like */
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-right: 10px;
-  margin-top: 10px;
-
-}
-
-button:hover {
-  background-color: #585b5f; /* Darker shade for hover state */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-button:active {
-  background-color: #585b5f; /* Even darker shade for active state */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-button:focus {
-  outline: none; /* Removes the outline on focus for browsers that show one */
-}
-
-/* Additional styles for file input */
-input[type="file"] {
-  display: none; /* Hide the default input */
-}
-
-.custom-file-upload {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background-color: #313335;
-  color: white;
-  border-radius: 5px;
-  margin-right: 10px; /* Add some space between the button and the file input */
-}
-
-.custom-file-upload:hover {
-  background-color: #585b5f;
-}
-
-.content-container {
-  display: flex;
-  justify-content: center; /* Centers children horizontally */
-  align-items: center; /* Centers children vertically */
-  height: 80vh; /* Set to the height of the viewport for vertical centering */
-}
-
-
-.hoodie-container {
-  margin-right: 20px; /* Optional: Adds some space between the hoodie and the swatches */
-}
-.color-swatches-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Creates as many columns as can fit */
-  grid-gap: 5px; /* Spacing between swatches */
-  justify-content: center;
-}
-
-.color-swatches-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the color swatches vertically */
-  margin: 5px; /* Gives space between columns */
-}
-
-.color-swatch {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-bottom: 5px; /* space between rows */
-  cursor: pointer;
-}
-
-
-
-
-/* Clear fix for nth-child */
-.color-swatch:nth-child(3n+1) {
-  clear: both;
-}
-
-
-.color-swatch:hover {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Slider styles */
-.scale-slider {
-  margin: 10px 0;
-}
-
-.scale-slider label {
-  margin-right: 10px;
-}
-
-.scale-slider input[type="range"] {
-  width: 200px; /* Adjust the width as you like */
-}
-
-.design-container {
-  position: relative;
-}
-
-
-
-.delete-button {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 0 5px;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-.design-container:hover .delete-button {
-  display: block; /* Show delete button on hover */
-}
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .category-box {
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    /* Remove border and border-radius to get rid of the grey border */
+    overflow: hidden; /* Ensures that the images conform to the box's border radius */
+  }
+  .App-header img {
+    max-width: 100%; /* Maximum width of image is 100% of its container */
+    height: auto; /* Image height is set to auto to maintain aspect ratio */
+  }
+  
+  .App-header h1 {
+    display: flex; /* Use flexbox to align text and image */
+    align-items: center; /* Vertically center align items in the header */
+    justify-content: center; /* Horizontally center content */
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+    gap: 10px; /* Space between logo and title */
+  }
+  
+  /* Responsive text size */
+  .App-header h1 {
+    font-size: calc(1.5rem + 1vw); /* Adjust size of the header text based on viewport width */
+  }
+  
+  .category-box img {
+    width: 100%; /* Makes the image take the full width of the box */
+    height: auto; /* Keeps the image aspect ratio */
+    object-fit: cover; /* Ensures that the image covers the area without distortion */
+    /* Increase the size of the box and remove border-radius if you don't want rounded corners */
+    /* margin-bottom: 10px; */ /* You can remove this if you don't want space below the images */
+  }
+  
+  @media (max-width: 768px) {
+    .category-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    .App-header img {
+      max-height: 50px; /* Maximum height of the image on small screens */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .App-header img {
+      max-height: 100px; /* Maximum height of the image on large screens */
+    }
+  }
