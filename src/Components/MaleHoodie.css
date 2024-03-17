@@ -195,6 +195,14 @@
 }
 
 
+.color-swatch.Mauve
+{
+  background-color: #b16e6f!important;
+}
+.color-swatch.PEACH
+{
+  background-color: #f3bba0!important;
+}
 .color-swatch.Scuba_Blue
 {
   background-color: #65cbd3;
@@ -216,9 +224,9 @@
 }.color-swatch.Royal
 {
   background-color: #1f3481;
-}.color-swatch.Navy
+}.color-swatch.NAVY
 {
-  background-color: #10162e;
+  background-color: #272e4b!important;
 }
 
 .color-swatch.Violet
@@ -230,6 +238,19 @@
 }.color-swatch.pink
 {
   background-color: #edc0cf!important;
+}
+.color-swatch.Heather_Grey
+{
+  background-color: #b7b6b8!important;
+}
+
+.color-swatch.Creme
+{
+  background-color: #f9ebd0!important;
+}
+.color-swatch.Sea_Blue
+{
+  background-color: #2a3f50!important;
 }
 
 

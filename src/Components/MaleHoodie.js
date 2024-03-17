@@ -46,13 +46,9 @@ function MaleHoodie() {
         }
     };
 
-
-
-
     const handleThumbnailClick = (view) => {
         setSelectedView(view);
     };
-
     const handleColorSwatchClick = (color) => {
         setSelectedColor(color);
         setSelectedView('front');
@@ -79,8 +75,6 @@ function MaleHoodie() {
             console.log('No file selected.');
         }
     };
-
-
     function generateHoodiePaths(color) {
         const base = '/assets/';
         const formattedColor = color.replace(/_/g, '_').toLowerCase(); // Adjust formatting if necessary
@@ -90,10 +84,8 @@ function MaleHoodie() {
             back: `${base}${formattedColor}_back_hoodie.jpg`,
         };
     }
-
     const hoodieColors = ['white', 'black', 'sport_grey', 'green', 'blue', 'pink',
     ];
-
     const hoodieImages = hoodieColors.reduce((acc, color) => {
         acc[color] = generateHoodiePaths(color);
         return acc;
@@ -106,7 +98,6 @@ function MaleHoodie() {
     const numberOfColors = hoodieColors.length;
     const colorsPerRow = 2;
     const numberOfRows = Math.ceil(numberOfColors / colorsPerRow);
-
     const handleWheel = (e) => {
         e.preventDefault();
         const scaleIncrement = 0.05;
