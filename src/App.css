@@ -19,11 +19,13 @@
 }
 
 .main-display {
+  position: relative;
   width: 100%;
   max-width: 300px; /* Adjust based on actual image size */
   margin: 20px auto;
   overflow: visible;
 }
+
 
 
 .hoodie-image {
