@@ -1,0 +1,54 @@
+.examples-container {
+    text-align: center;
+}
+
+.thumbnail-container- {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally when using flex-direction: column */
+    gap: 10px; /* Spacing between thumbnails */
+}
+
+.thumbnail img {
+    width: 61px; /* Thumbnail size */
+    cursor: pointer; /* Indicate that the item is clickable */
+    border: 1px solid #ccc; /* Optional border for thumbnails */
+}
+
+.fullscreen-container {
+    position: fixed;
+    flex-direction: column; /* Stack children vertically */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000; /* High z-index to ensure it's on top */
+
+}
+
+.fullscreen-container img {
+    max-width: 300px; /* Adjust as necessary */
+    max-height: 300px; /* Adjust as necessary */
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background: #f00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.view-controls {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 20px; /* Space between image and buttons */
+}
