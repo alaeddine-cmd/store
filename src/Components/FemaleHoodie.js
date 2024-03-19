@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './MaleHoodie.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
-
+import Examples2 from './Exemples2';
 const FemaleHoodie = () => {
     const [designs, setDesigns] = useState({
         front: { src: null, x: 50, y: 50, scale: 1 },
@@ -95,9 +95,6 @@ const FemaleHoodie = () => {
         return hoodieImages[selectedColor][selectedView];
     };
 
-    const numberOfColors = hoodieColors.length;
-    const colorsPerRow = 2;
-    const numberOfRows = Math.ceil(numberOfColors / colorsPerRow);
     const handleWheel = (e) => {
         e.preventDefault();
         const scaleIncrement = 0.05;
@@ -136,84 +133,87 @@ const FemaleHoodie = () => {
 
     const currentDesign = designs[selectedView];
 
-  return (
-    <div className="MaleHoodie">
-    <h1></h1>
-    <div className="content-container">
-        <div className="hoodie-container">
-            <div className="main-display" ref={hoodieRefs[selectedView]}>
-                <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
-                {currentDesign.src && (
-                    <Draggable
-                        bounds="parent"
-                        onDrag={handleDrag}
-                        position={{ x: currentDesign.x, y: currentDesign.y }}
-                    >
-                        {/* Scale is applied to the image directly */}
-                        <img
-                            src={currentDesign.src}
-                            alt="Custom Design"
-                            style={{
-                                width: `${currentDesign.scale * 100}%`, // Adjust width as a percentage based on scale
-                                height: 'auto', // Height is auto to maintain aspect ratio
-                                position: 'absolute',
-                                cursor: 'move', // Cursor indicates the image is moveable
-                                pointerEvents: 'all', // Make sure the image can receive pointer events
-                            }}
-                            onWheel={handleWheel} // Wheel event is attached to the image for scaling
-                        />
-                    </Draggable>
-                )}
-            </div>
-            <div className="thumbnail-container">
-                {Object.keys(hoodieImages[selectedColor]).map((view) => (
-                    <img
-                        key={view}
-                        src={hoodieImages[selectedColor][view]}
-                        alt={`${view} view`}
-                        onClick={() => handleThumbnailClick(view)}
-                        className={`thumbnail ${selectedView === view ? 'active' : ''}`}
-                    />
-                ))}
-            </div>
-            {currentDesign.src && (
-                <div className="scale-slider">
-                    <label htmlFor="scaleControl">Scale Design</label>
-                    <input
-                        id="scaleControl"
-                        type="range"
-                        min="0.1"
-                        max="3"
-                        step="0.01"
-                        value={currentDesign.scale}
-                        onChange={(e) => handleScaleChange(e, selectedView)}
-                    />
+    return (
+        <div className="MaleHoodie">
+            <h1></h1>
+            <div className="content-container">
+                <div className="examples-container">
+                    <Examples2 />
                 </div>
-            )}
-            <label className="custom-file-upload">
-                <input type="file" onChange={handleImageUpload} />
-                Upload Design
-            </label>
-            {designs[selectedView].src && (
-                <button onClick={handleRemoveDesign}>Remove Design</button>
-            )}
-            <button onClick={handleDownload}>Download</button>
-        </div>
+                <div className="hoodie-container">
+                    <div className="main-display" ref={hoodieRefs[selectedView]}>
+                        <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
+                        {currentDesign.src && (
+                            <Draggable
+                                bounds="parent"
+                                onDrag={handleDrag}
+                                position={{ x: currentDesign.x, y: currentDesign.y }}
+                            >
+                                {/* Scale is applied to the image directly */}
+                                <img
+                                    src={currentDesign.src}
+                                    alt="Custom Design"
+                                    style={{
+                                        width: `${currentDesign.scale * 100}%`, // Adjust width as a percentage based on scale
+                                        height: 'auto', // Height is auto to maintain aspect ratio
+                                        position: 'absolute',
+                                        cursor: 'move', // Cursor indicates the image is moveable
+                                        pointerEvents: 'all', // Make sure the image can receive pointer events
+                                    }}
+                                    onWheel={handleWheel} // Wheel event is attached to the image for scaling
+                                />
+                            </Draggable>
+                        )}
+                    </div>
+                    <div className="thumbnail-container">
+                        {Object.keys(hoodieImages[selectedColor]).map((view) => (
+                            <img
+                                key={view}
+                                src={hoodieImages[selectedColor][view]}
+                                alt={`${view} view`}
+                                onClick={() => handleThumbnailClick(view)}
+                                className={`thumbnail ${selectedView === view ? 'active' : ''}`}
+                            />
+                        ))}
+                    </div>
+                    {currentDesign.src && (
+                        <div className="scale-slider">
+                            <label htmlFor="scaleControl">Scale Design</label>
+                            <input
+                                id="scaleControl"
+                                type="range"
+                                min="0.1"
+                                max="3"
+                                step="0.01"
+                                value={currentDesign.scale}
+                                onChange={(e) => handleScaleChange(e, selectedView)}
+                            />
+                        </div>
+                    )}
+                    <label className="custom-file-upload">
+                        <input type="file" onChange={handleImageUpload} />
+                        Upload Design
+                    </label>
+                    {designs[selectedView].src && (
+                        <button onClick={handleRemoveDesign}>Remove Design</button>
+                    )}
+                    <button onClick={handleDownload}>Download</button>
+                </div>
 
-        <div className="color-swatches-container">
-            {hoodieColors.map(color => (
-                <div
-                    key={color}
-                    className={`color-swatch ${color}`}
-                    onClick={() => handleColorSwatchClick(color)}
-                    style={{ backgroundColor: color }}
-                ></div>
-            ))}
-        </div>
+                <div className="color-swatches-container">
+                    {hoodieColors.map(color => (
+                        <div
+                            key={color}
+                            className={`color-swatch ${color}`}
+                            onClick={() => handleColorSwatchClick(color)}
+                            style={{ backgroundColor: color }}
+                        ></div>
+                    ))}
+                </div>
 
-    </div>
-</div>
-  );
+            </div>
+        </div>
+    );
 };
 
 export default FemaleHoodie;

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './MaleHoodie.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
-
+import Examples4 from './Exemples4';
 const FemaleShirt = () => {
     const [designs, setDesigns] = useState({
         front: { src: null, x: 50, y: 50, scale: 1 },
@@ -138,6 +138,9 @@ const FemaleShirt = () => {
     <div className="MaleHoodie">
     <h1></h1>
     <div className="content-container">
+    <div className="examples-container">
+                    <Examples4 />
+                </div>
         <div className="hoodie-container">
             <div className="main-display" ref={hoodieRefs[selectedView]}>
                 <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />

@@ -27,26 +27,32 @@ function MaleHoodie() {
         document.body.removeChild(link);
     };
     const handleDownload = async () => {
-        // Existing functionality to download the hoodie design
         const activeDisplayRef = hoodieRefs[selectedView].current;
-
+    
         if (activeDisplayRef && designs[selectedView].src) {
-            const scale = window.devicePixelRatio; // Consider the device's pixel ratio
+            // Consider offering the user to choose a higher scale for better quality
+            const scale = window.devicePixelRatio * 2; // Example: doubling the scale for better quality
             const canvas = await html2canvas(activeDisplayRef, {
                 scale: scale,
                 useCORS: true,
+                logging: true, // Consider turning off in production
             });
-            const dataUrl = canvas.toDataURL('image/png');
-            downloadImage(dataUrl, `custom-hoodie-${selectedView}.png`);
+    
+            // Example: allowing user to choose format and quality. Here we use JPEG for illustration.
+            const imageQuality = 0.9; // Quality from 0 to 1, applicable for 'image/jpeg'
+            const dataUrl = canvas.toDataURL('image/jpeg', imageQuality);
+            
+            downloadImage(dataUrl, `custom-hoodie-${selectedView}.jpeg`); // Adjust file extension based on format
         } else {
             console.error(`No design for ${selectedView} view or element not rendered`);
         }
-
-        // Call to download the original uploaded image
+    
+        // Download the original uploaded image
         if (designs[selectedView].src) {
             downloadImage(designs[selectedView].src, `original-design-${selectedView}.png`);
         }
     };
+    
 
     const handleThumbnailClick = (view) => {
         setSelectedView(view);
