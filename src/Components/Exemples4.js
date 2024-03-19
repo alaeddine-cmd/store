@@ -3,10 +3,10 @@ import './Examples.css';
 
 function Examples2() {
     const [examples] = useState([
-        { id: 1, front: '/assets/black.png', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
-        { id: 2, front: '/assets/simpson.png', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
-        { id: 3, front: '/assets/blue.png', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
-        { id: 4, front: '/assets/rick-and-morty.png', side: '/assets/green_side_hoodie.jpg', back: '/assets/rick-and-morty-back.png' },
+        { id: 1, front: '/assets/offline.jpeg', side: '/assets/white_side_shirt_fem.jpg', back: '/assets/white_back_shirt_fem.jpg' },
+        { id: 2, front: '/assets/battery.jpeg', side: '/assets/black_side_shirt_fem.jpg', back: '/assets/black_back_shirt_fem.jpg' },
+        { id: 3, front: '/assets/stitch2.jpeg', side: '/assets/Heather_Grey_side_shirt_fem.jpg', back: '/assets/Heather_Grey_back_shirt_fem.jpg' },
+        { id: 4, front: '/assets/bubbles.jpeg', side: '/assets/Sea_Blue_side_shirt_fem.jpg', back: '/assets/Sea_Blue_back_shirt_fem.jpg' },
 
         // Add other examples as necessary
     ]);
