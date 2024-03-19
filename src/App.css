@@ -1,63 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Header styles */
 .App-header {
-  background-color: #282c34;
-  color: white;
+  background-color: #1a1a1aba;
+  color: #f8f8f8;
   padding: 20px;
   text-align: center;
 }
+
+
+.App-header img {
+  max-width: 80%; /* Adjusted for better responsiveness */
+  max-height: 80px; /* Limiting height for consistency */
+  height: auto;
+}
+
+.App-header h1 {
+  font-size: calc(1.5rem + 1vw); /* Slightly larger base size for readability */
+  font-weight: 300; /* Lighter font-weight for a more modern and elegant look */
+  letter-spacing: 10px; /* Add some spacing between letters */
+  margin-bottom: 1rem; /* Add some space below the header */
+}
+
+/* Category Container */
 .category-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .category-box {
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    /* Remove border and border-radius to get rid of the grey border */
-    overflow: hidden; /* Ensures that the images conform to the box's border radius */
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid */
+  gap: 20px;
+  padding: 100px;
+}
+
+.category-box {
+  background-color: #f9f9f9; /* Light grey background for less stark contrast */
+  border-radius: 10px; /* Rounded corners for a softer look */
+  overflow: hidden;
+  position: relative; /* Set the parent to relative positioning */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  display: block;
+}
+.image-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  color: white; /* White text color */
+  opacity: 0; /* Make it invisible by default */
+  transition: opacity 0.5s ease;
+  font-size: 1.5rem; /* Adjust font size here as needed */
+  pointer-events: none; /* Ignore pointer events */
+  overflow: hidden; /* Hide overflow */
+}
+
+/* Hover effect for the .category-box */
+.category-box:hover .image-overlay {
+  opacity: 1; /* Make the overlay visible on hover */
+}
+.category-box:hover {
+  transform: translateY(-5px); /* Lift the box slightly on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.category-box img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 200px;
+}
+
+/* Text Styles for Links */
+a {
+  color: #333; /* Dark text for readability on light background */
+  text-decoration: none; /* No underline */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
   .App-header img {
-    max-width: 100%; /* Maximum width of image is 100% of its container */
-    height: auto; /* Image height is set to auto to maintain aspect ratio */
+    max-height: 60px;
   }
-  
-  .App-header h1 {
-    display: flex; /* Use flexbox to align text and image */
-    align-items: center; /* Vertically center align items in the header */
-    justify-content: center; /* Horizontally center content */
-    flex-wrap: wrap; /* Allow items to wrap if needed */
-    gap: 10px; /* Space between logo and title */
-  }
-  
-  /* Responsive text size */
-  .App-header h1 {
-    font-size: calc(1.5rem + 1vw); /* Adjust size of the header text based on viewport width */
-  }
-  
+
   .category-box img {
-    width: 50%; /* Makes the image take the full width of the box */
-    height: auto; /* Keeps the image aspect ratio */
-    object-fit: cover; /* Ensures that the image covers the area without distortion */
-    /* Increase the size of the box and remove border-radius if you don't want rounded corners */
-    /* margin-bottom: 10px; */ /* You can remove this if you don't want space below the images */
+    max-height: 150px;
   }
-  
-  @media (max-width: 768px) {
-    .category-container {
-      grid-template-columns: 1fr;
-    }
+}
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem; /* Slightly smaller font size for mobile */
   }
-  @media (max-width: 768px) {
-    .App-header img {
-      max-height: 50px; /* Maximum height of the image on small screens */
-    }
-  }
-  
-  @media (min-width: 769px) {
-    .App-header img {
-      max-height: 100px; /* Maximum height of the image on large screens */
-    }
-  }
+}

@@ -204,7 +204,6 @@ function MaleHoodie() {
                     )}
                     <button onClick={handleDownload}>Download</button>
                 </div>
-
                 <div className="color-swatches-container">
                     {hoodieColors.map(color => (
                         <div
@@ -215,12 +214,8 @@ function MaleHoodie() {
                         ></div>
                     ))}
                 </div>
-
-
-
             </div>
         </div >
-
     );
 }
 

@@ -1,5 +1,29 @@
 .examples-container {
-    text-align: center;
+    text-align: left; /* Center the title and examples */
+    margin-right: 20px; /* A reasonable default margin */
+    margin-left: 20px;
+}
+
+.example-thumbnails {
+    display: flex;
+    flex-direction: column; /* Stacks thumbnails vertically */
+    align-items: flex-start; /* Aligns thumbnails to the far left */
+    gap: 10px; /* Space between thumbnails */
+}
+
+.example-thumbnail {
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    margin-bottom: 10px; /* Space below each thumbnail */
+}
+.example-thumbnail:hover {
+    transform: scale(1.05); /* Slightly enlarges the thumbnails on hover */
+}
+
+.example-image {
+    max-width: 100px; /* Max width of the thumbnails, adjust as needed */
+    height: auto;
+    display: block; /* Removes space below the image */
 }
 
 .thumbnail-container- {
@@ -30,7 +54,13 @@
     z-index: 1000; /* High z-index to ensure it's on top */
 
 }
-
+.examples-title {
+    font-size: 12px; /* Size of the title */
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; /* Text color for the title */
+    /* Other styles for the title as needed */
+}
 .fullscreen-container img {
     max-width: 300px; /* Adjust as necessary */
     max-height: 300px; /* Adjust as necessary */

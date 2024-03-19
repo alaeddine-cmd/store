@@ -24,19 +24,23 @@ function Navigation() {
   return (
     <>
       <header className="App-header">
-        <h1><img src="/assets/logo_2.png" />Welcome to Our Fashion Store</h1>
+        <h1><img src="/assets/logo_2.png" style={{ marginRight: "15px" }} alt="Stitch Switch" />Stitch Switch</h1>
       </header>
       <div className="category-container">
         <Link to="/male-hoodie" className="category-box">
+          <div className="image-overlay">Men's Hoodies</div>
           <img src="/assets/male-hoodie.jpg" alt="Male Hoodie" />
         </Link>
         <Link to="/female-hoodie" className="category-box">
+          <div className="image-overlay">Women's Hoodies</div>
           <img src="/assets/woman-hoodie.jpg" alt="Female Hoodie" />
         </Link>
         <Link to="/male-shirt" className="category-box">
+          <div className="image-overlay">Men's Shirts</div>
           <img src="/assets/male-t-shirt.jpg" alt="Male Shirt" />
         </Link>
         <Link to="/female-shirt" className="category-box">
+          <div className="image-overlay">Women's Shirts</div>
           <img src="/assets/woman-t-shirt.jpg" alt="Female Shirt" />
         </Link>
       </div>

@@ -5,7 +5,8 @@
 }
 
 .examples-container {
-  margin-left: 70px; /* Spacing between sidebar and hoodie container */
+  margin-left: 20px; /* Spacing between sidebar and hoodie container */
+  margin-right: 20px;
 }
   .hoodie-container, .color-swatches-container {
     width: 100%; /* Full width on smaller screens */
@@ -350,8 +351,11 @@ input[type="file"] {
 
 .hoodie-container {
   margin-right: 20px; /* Optional: Adds some space between the hoodie and the swatches */
+  margin-left: 20px;
 }
 .color-swatches-container {
+  margin-right: 20px;
+  margin-left: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Creates as many columns as can fit */
   grid-gap: 5px; /* Spacing between swatches */

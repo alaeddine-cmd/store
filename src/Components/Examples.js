@@ -32,11 +32,12 @@ function Examples() {
 
     return (
         <div className="examples-container">
-            
-            <div className="example-thumbnail-container">
+{/*             <h2 className="examples-title">Examples</h2> 
+ */}
+            <div className="example-thumbnails">
                 {examples.map(example => (
-                    <div key={example.id} className="thumbnail" onClick={() => handleImageClick(example, 'front')}>
-                        <img src={example.front} alt="Front view" />
+                    <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
+                        <img src={example.front} className="example-image" alt="Front view" />
                     </div>
                 ))}
             </div>
