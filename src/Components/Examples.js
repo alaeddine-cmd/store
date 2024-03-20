@@ -49,7 +49,7 @@ function Examples() {
                         <button onClick={() => handleViewChange('side')}>Side</button>
                         <button onClick={() => handleViewChange('back')}>Back</button>
                     </div>
-                    <button className="close-btn" onClick={closeFullscreen}>Close</button>
+                    <button className="close-btn" onClick={closeFullscreen}>x</button>
                 </div>
             )}
 
