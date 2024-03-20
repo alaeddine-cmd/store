@@ -1,15 +1,42 @@
 import React, { useState, useRef } from 'react';
-import './MaleHoodie.css';
+import './MaleHoodie.css'; // Ensure all relevant styles from Examples.css are also included here
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
-import Examples from './Examples';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
 function MaleHoodie() {
     const [designs, setDesigns] = useState({
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
     });
+    const [examples] = useState([
+        { id: 1, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', back: '/assets/hihi.jpeg' },
+        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
+        { id: 3, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
+        { id: 4, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
+    ]);
+    const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
+    const [sideMenuOpen, setSideMenuOpen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
+    const openFullscreen = (image, type) => {
+        setSelectedImage({ src: image, type });
+        setIsFullscreen(true);
+    };
+    // Function to close the full-screen overlay
+    const closeFullscreen = () => {
+        setIsFullscreen(false);
+    };
+
+    const toggleSideMenu = () => {
+        setSideMenuOpen(!sideMenuOpen);
+    };
+
+    const closeSideMenu = () => {
+        setSideMenuOpen(false);
+    };
 
     const hoodieRefs = {
         front: useRef(),
@@ -102,7 +129,53 @@ function MaleHoodie() {
     const renderHoodieImage = () => {
         return hoodieImages[selectedColor][selectedView];
     };
+    const handleDownloadAllSides = async () => {
+        const example = examples.find(e => e.id === selectedImage.id);
+        if (!example) {
+            console.error('No example selected or example does not exist.');
+            return;
+        }
 
+        const zip = new JSZip();
+
+        // Function to fetch image as blob
+        const fetchImageAsBlob = async (imageUrl) => {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            return blob;
+        };
+
+        // Add images to zip
+        const imageTypes = ['front', 'side', 'back'];
+        for (const type of imageTypes) {
+            const imageUrl = example[type];
+            if (!imageUrl) continue;
+            try {
+                const imageBlob = await fetchImageAsBlob(imageUrl);
+                zip.file(`${type}.jpg`, imageBlob, { binary: true });
+            } catch (error) {
+                console.error(`Failed to load image: ${imageUrl}`, error);
+            }
+        }
+
+        // Generate ZIP
+        zip.generateAsync({ type: "blob" })
+            .then(function (content) {
+                saveAs(content, "hoodie-designs.zip");
+            });
+    };
+    const handleImageClick = (example, type) => {
+        setSelectedImage({ src: example[type], type, id: example.id });
+        setIsFullscreen(true);
+    };
+    const handleViewChange = (type) => {
+        const example = examples.find(e => e.id === selectedImage.id);
+        if (example && example[type]) {
+            setSelectedImage({ src: example[type], type, id: selectedImage.id });
+        } else {
+            console.error('The requested image does not exist.');
+        }
+    };
     const numberOfColors = hoodieColors.length;
     const colorsPerRow = 2;
     const numberOfRows = Math.ceil(numberOfColors / colorsPerRow);
@@ -146,13 +219,37 @@ function MaleHoodie() {
 
     return (
         <div className="MaleHoodie">
+            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas!</button>
+
             <div className="content-container">
                 <div>
-                    <Examples />
+                    <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
 
+                        <div className="example-thumbnails">
+                            {examples.map(example => (
+                                <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
+                                    <img src={example.front} className="example-image" alt="Front view" />
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
                 </div>
                 <div className="hoodie-container">
-
+                    {isFullscreen && selectedImage.src && (
+                        <div className="fullscreen-overlay" onClick={closeFullscreen}>
+                            <div className="fullscreen-content" onClick={e => e.stopPropagation()}>
+                                <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
+                                <div className="fullscreen-controls">
+                                    <button onClick={() => handleViewChange('front')}>Front</button>
+                                    <button onClick={() => handleViewChange('side')}>Side</button>
+                                    <button onClick={() => handleViewChange('back')}>Back</button>
+                                    <button onClick={handleDownloadAllSides}>Download</button>
+                                </div>
+                            </div>
+                            <button className="close-btn" onClick={closeFullscreen}>(x)</button>
+                        </div>
+                    )}
                     <div className="main-display" ref={hoodieRefs[selectedView]}>
                         <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
                         {currentDesign.src && (
@@ -191,6 +288,20 @@ function MaleHoodie() {
                         <input type="file" onChange={handleImageUpload} />
                         Upload Design
                     </label>
+                    {currentDesign.src && (
+                        <div className="scale-slider">
+                            <label htmlFor="scaleControl">Scale Design</label>
+                            <input
+                                id="scaleControl"
+                                type="range"
+                                min="0.1"
+                                max=".5"
+                                step="0.01"
+                                value={currentDesign.scale}
+                                onChange={(e) => handleScaleChange(e, selectedView)}
+                            />
+                        </div>
+                    )}
                     {designs[selectedView].src && (
                         <button onClick={handleRemoveDesign}>Remove Design</button>
                     )}
@@ -206,20 +317,6 @@ function MaleHoodie() {
                             ></div>
                         ))}
                     </div>
-                    {currentDesign.src && (
-                        <div className="scale-slider">
-                            <label htmlFor="scaleControl">Scale Design</label>
-                            <input
-                                id="scaleControl"
-                                type="range"
-                                min="0.1"
-                                max="3"
-                                step="0.01"
-                                value={currentDesign.scale}
-                                onChange={(e) => handleScaleChange(e, selectedView)}
-                            />
-                        </div>
-                    )}
                 </div>
             </div>
         </div >

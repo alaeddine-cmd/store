@@ -1,18 +1,242 @@
 /* Base and reset styles */
-.MaleHoodie {
-  text-align: center;
-  padding: 20px;
+@media (max-width: 768px) {
+  .thumbnail {
+    max-width: 80px; /* Slightly smaller thumbnails on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail {
+    max-width: 60px; /* Even smaller thumbnails on very small screens */
+  }
+}
+
+
+.hoodie-image {
+  width: 100%; /* Full width within the .main-display container */
+  height: 100%;
+  margin-bottom: 2rem; /* Space below the main image */
+}
+
+/* Thumbnails at the top */
+.examples-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+.view-controls {
+  position: absolute;
+  bottom: 10px; /* Positioned at the bottom of the fullscreen-content */
+  left: 50%;
+  transform: translateX(-50%); /* Center the controls horizontally */
+  display: flex;
+  gap: 10px; /* Spacing between buttons */
+}
+.sidebar {
+  flex: 0 0 20%; /* Take up 20% of the container width by default */
+  max-width: 240px; /* Maximum width of the sidebar */
+  min-width: 150px; /* Minimum width of the sidebar */
+  overflow-y: auto; /* Enable vertical scrolling if content is too tall */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.example-thumbnail.active img {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.example-thumbnail {
+  margin: 35px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for pop effect */
+}
+.example-thumbnail img {
+  width: 100%; /* Image fills the thumbnail container */
+  height: auto;
+}
+.example-thumbnail:hover {
+  transform: scale(1.1); /* Enlarge thumbnails on hover */
+}
+
+
+
+/* Color swatches */
+
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+/* Scale slider and buttons */
+.scale-slider {
+  width: 10%; /* Take up most of the width on mobile */
+  margin: 1rem 0;
+}
+
+.scale-slider input[type="range"] {
+  width: 100%; /* Full width within the .scale-slider container */
+}
+
+button, .custom-file-upload {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px 5px; /* Slight margin for spacing */
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-display {
+    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
+  }
+
+  .color-swatch {
+    width: 35px;
+    height: 35px; /* Adjust the swatches for smaller screens */
+  }
+
+  button, .custom-file-upload {
+    width: 100%; /* Full width buttons for easier touch access */
+    margin: 10px 0;
+  }
+}
+
+.fullscreen-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  flex-direction: row;
+  z-index: 2000; /* Make sure this is higher than the side-menu's z-index */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      flex: 0 0 30%; /* Take up more width on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+      flex: 0 0 100%; /* Full width on very small screens */
+      order: -1; /* Render above the main content */
+  }
+}
+.side-menu {
+  position: fixed; /* Fixed position to the side of the screen */
+  top: 0;
+  left: 0;
+  width: 250px; /* Width of the side menu */
+  height: 100%; /* Full height */
+  background: #fff; /* Background color of the side menu */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  transform: translateX(-100%); /* Hide off screen */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for opening/closing */
+  z-index: 500; /* Example z-index for the side menu */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.side-menu.open {
+  transform: translateX(0); /* Move onto the screen when 'open' */
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-content img {
+    max-height: 60vh; /* you can adjust the max-height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .fullscreen-content img {
+    max-height: 50vh; /* further adjust for very small screens */
+  }
+}
+.fullscreen-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px; /* Add some space between the image and buttons */
+}
+.fullscreen-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  width: 80%; /* or any other percentage that suits your design */
+  max-width: 90%; 
+  max-height: 90vh; 
+  position: relative;
+  /* No max-width or max-height necessary here unless you want to limit it */
+}
+.fullscreen-content img {
+  max-width: 100%; /* image will scale based on its container width */
+  max-height: 80vh; /* adjust the height to a reasonable portion of the viewport */
+  object-fit: contain; /* this will ensure the image maintains its aspect ratio */
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem; /* adjust size as needed */
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10101; /* above the fullscreen-overlay */
+}
+
+.close-btn:hover {
+  background: #e9e9e9;
+}
+
+.MaleHoodie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align to start if you do not want it to stretch across the screen */
   min-height: 100vh;
-  background-color: #fff; /* or any color that fits your brand */
+  width: 100%; /* Full width */
+  padding: 20px;
+  background-color: #fff;
 }
 .content-container {
-  display: flex; /* Use flexbox for layout */
-  align-items: flex-start; /* Align the children to the top */
+  display: flex; /* Keep using flexbox */
+  flex-wrap: wrap; /* Allow wrapping onto multiple lines if needed */
+  justify-content: space-between; /* Space out children */
+  align-items: flex-start; /* Align children at the top */
+  max-width: 1200px; /* Max width or your preference for the entire container */
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+  box-sizing: border-box;
 }
+
 
 * {
   margin: 0;
@@ -30,24 +254,17 @@ body, html {
   line-height: 1.6;
 }
 
-/* Main hoodie application styling */
-.MaleHoodie {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
 .main-display {
   position: relative;
   max-width: 400px; /* Adjust this value as needed */
   margin: 20px auto;
 }
 .hoodie-container {
-  flex: 1; /* Take the remaining space */
+  flex: 1; /* Takes up remaining space */
   display: flex;
-  flex-direction: column; /* Stack children vertically */
+  flex-direction: column;
+  align-items: center; /* Center the children (the hoodie image) */
+  padding: 20px;
 }
 
 .hoodie-image {
@@ -59,14 +276,17 @@ body, html {
 /* Styling for thumbnail images */
 .thumbnail-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center; /* Center thumbnails horizontally */
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 10px; /* Spacing between thumbnails */
+  margin: 20px 0; /* Spacing above and below the container */
 }
 
+
 .thumbnail {
-  width: 10%; /* Smaller percentage for larger screen to fit in a row */
+  width: auto; /* Auto width to maintain aspect ratio */
+  max-width: 100px; /* Maximum size for thumbnails */
+  height: auto; /* Auto height to maintain aspect ratio */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }

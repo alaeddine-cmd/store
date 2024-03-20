@@ -2,13 +2,43 @@ import React, { useState, useRef } from 'react';
 import './MaleHoodie.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
-import Examples2 from './Exemples2';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
 const FemaleHoodie = () => {
     const [designs, setDesigns] = useState({
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
     });
+    const [examples] = useState([
+        { id: 1, front: '/assets/friends.jpeg', side: '/assets/mauve_side_hoodie_fem.jpg', back: '/assets/mauve_back_hoodie_fem.jpg' },
+        { id: 2, front: '/assets/black_fem.jpeg', side: '/assets/black_side_hoodie_fem.jpg', back: '/assets/black_back_hoodie_fem.jpg' },
+        { id: 3, front: '/assets/stitch.jpeg', side: '/assets/pink_side_hoodie_fem.jpg', back: '/assets/pink_back_hoodie_fem.jpg' },
+        { id: 4, front: '/assets/bears.jpeg', side: '/assets/white_side_hoodie_fem.jpg', back: '/assets/white_back_hoodie_fem.jpg' },
+
+    ]);
+    const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
+    const [sideMenuOpen, setSideMenuOpen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    const openFullscreen = (image, type) => {
+        setSelectedImage({ src: image, type });
+        setIsFullscreen(true);
+    };
+    // Function to close the full-screen overlay
+    const closeFullscreen = () => {
+        setIsFullscreen(false);
+    };
+
+    const toggleSideMenu = () => {
+        setSideMenuOpen(!sideMenuOpen);
+    };
+
+    const closeSideMenu = () => {
+        setSideMenuOpen(false);
+    };
+
     const hoodieRefs = {
         front: useRef(),
         side: useRef(),
@@ -26,7 +56,7 @@ const FemaleHoodie = () => {
     };
     const handleDownload = async () => {
         const activeDisplayRef = hoodieRefs[selectedView].current;
-    
+
         if (activeDisplayRef && designs[selectedView].src) {
             // Consider offering the user to choose a higher scale for better quality
             const scale = window.devicePixelRatio * 2; // Example: doubling the scale for better quality
@@ -35,22 +65,22 @@ const FemaleHoodie = () => {
                 useCORS: true,
                 logging: true, // Consider turning off in production
             });
-    
+
             // Example: allowing user to choose format and quality. Here we use JPEG for illustration.
             const imageQuality = 0.9; // Quality from 0 to 1, applicable for 'image/jpeg'
             const dataUrl = canvas.toDataURL('image/jpeg', imageQuality);
-            
+
             downloadImage(dataUrl, `custom-hoodie-${selectedView}.jpeg`); // Adjust file extension based on format
         } else {
             console.error(`No design for ${selectedView} view or element not rendered`);
         }
-    
+
         // Download the original uploaded image
         if (designs[selectedView].src) {
             downloadImage(designs[selectedView].src, `original-design-${selectedView}.png`);
         }
     };
-    
+
 
     const handleThumbnailClick = (view) => {
         setSelectedView(view);
@@ -100,7 +130,41 @@ const FemaleHoodie = () => {
     const renderHoodieImage = () => {
         return hoodieImages[selectedColor][selectedView];
     };
+    const handleDownloadAllSides = async () => {
+        const example = examples.find(e => e.id === selectedImage.id);
+        if (!example) {
+            console.error('No example selected or example does not exist.');
+            return;
+        }
 
+        const zip = new JSZip();
+
+        // Function to fetch image as blob
+        const fetchImageAsBlob = async (imageUrl) => {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            return blob;
+        };
+
+        // Add images to zip
+        const imageTypes = ['front', 'side', 'back'];
+        for (const type of imageTypes) {
+            const imageUrl = example[type];
+            if (!imageUrl) continue;
+            try {
+                const imageBlob = await fetchImageAsBlob(imageUrl);
+                zip.file(`${type}.jpg`, imageBlob, { binary: true });
+            } catch (error) {
+                console.error(`Failed to load image: ${imageUrl}`, error);
+            }
+        }
+
+        // Generate ZIP
+        zip.generateAsync({ type: "blob" })
+            .then(function (content) {
+                saveAs(content, "hoodie-designs.zip");
+            });
+    };
     const handleWheel = (e) => {
         e.preventDefault();
         const scaleIncrement = 0.05;
@@ -114,6 +178,14 @@ const FemaleHoodie = () => {
                 },
             };
         });
+    };
+    const handleViewChange = (type) => {
+        const example = examples.find(e => e.id === selectedImage.id);
+        if (example && example[type]) {
+            setSelectedImage({ src: example[type], type, id: selectedImage.id });
+        } else {
+            console.error('The requested image does not exist.');
+        }
     };
     const handleScaleChange = (e, view) => {
         const newScale = parseFloat(e.target.value);
@@ -136,41 +208,64 @@ const FemaleHoodie = () => {
             },
         }));
     };
-
+    const handleImageClick = (example, type) => {
+        setSelectedImage({ src: example[type], type, id: example.id });
+        setIsFullscreen(true);
+    };
     const currentDesign = designs[selectedView];
 
     return (
         <div className="MaleHoodie">
-            <h1></h1>
+            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas!</button>
             <div className="content-container">
-                <div className="examples-container">
-                    <Examples2 />
+                <div>
+                    <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
+
+                        <div className="example-thumbnails">
+                            {examples.map(example => (
+                                <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
+                                    <img src={example.front} className="example-image" alt="Front view" />
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
                 </div>
                 <div className="hoodie-container">
+                    {isFullscreen && selectedImage.src && (
+                        <div className="fullscreen-overlay" onClick={closeFullscreen}>
+                            <div className="fullscreen-content" onClick={e => e.stopPropagation()}>
+                                <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
+                                <div className="fullscreen-controls">
+                                    <button onClick={() => handleViewChange('front')}>Front</button>
+                                    <button onClick={() => handleViewChange('side')}>Side</button>
+                                    <button onClick={() => handleViewChange('back')}>Back</button>
+                                    <button onClick={handleDownloadAllSides}>Download</button>
+                                </div>
+                            </div>
+                            <button className="close-btn" onClick={closeFullscreen}>(x)</button>
+                        </div>
+                    )}
                     <div className="main-display" ref={hoodieRefs[selectedView]}>
                         <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
                         {currentDesign.src && (
-                            <Draggable
-                                bounds="parent"
-                                onDrag={handleDrag}
-                                position={{ x: currentDesign.x, y: currentDesign.y }}
-                            >
-                                {/* Scale is applied to the image directly */}
+                            <Draggable bounds="parent" onDrag={handleDrag} position={{ x: currentDesign.x, y: currentDesign.y }}>
                                 <img
                                     src={currentDesign.src}
                                     alt="Custom Design"
                                     style={{
-                                        width: `${currentDesign.scale * 100}%`, // Adjust width as a percentage based on scale
-                                        height: 'auto', // Height is auto to maintain aspect ratio
+                                        width: `${currentDesign.scale * 100}%`,
+                                        height: 'auto',
                                         position: 'absolute',
-                                        cursor: 'move', // Cursor indicates the image is moveable
-                                        pointerEvents: 'all', // Make sure the image can receive pointer events
+                                        cursor: 'move',
+                                        pointerEvents: 'all',
                                     }}
-                                    onWheel={handleWheel} // Wheel event is attached to the image for scaling
+                                    onWheel={handleWheel}
                                 />
                             </Draggable>
                         )}
                     </div>
+
                     <div className="thumbnail-container">
                         {Object.keys(hoodieImages[selectedColor]).map((view) => (
                             <img
@@ -181,7 +276,14 @@ const FemaleHoodie = () => {
                                 className={`thumbnail ${selectedView === view ? 'active' : ''}`}
                             />
                         ))}
+
                     </div>
+
+
+                    <label className="custom-file-upload">
+                        <input type="file" onChange={handleImageUpload} />
+                        Upload Design
+                    </label>
                     {currentDesign.src && (
                         <div className="scale-slider">
                             <label htmlFor="scaleControl">Scale Design</label>
@@ -189,37 +291,33 @@ const FemaleHoodie = () => {
                                 id="scaleControl"
                                 type="range"
                                 min="0.1"
-                                max="3"
+                                max=".5"
                                 step="0.01"
                                 value={currentDesign.scale}
                                 onChange={(e) => handleScaleChange(e, selectedView)}
                             />
                         </div>
                     )}
-                    <label className="custom-file-upload">
-                        <input type="file" onChange={handleImageUpload} />
-                        Upload Design
-                    </label>
                     {designs[selectedView].src && (
                         <button onClick={handleRemoveDesign}>Remove Design</button>
                     )}
                     <button onClick={handleDownload}>Download</button>
-                </div>
 
-                <div className="color-swatches-container">
-                    {hoodieColors.map(color => (
-                        <div
-                            key={color}
-                            className={`color-swatch ${color}`}
-                            onClick={() => handleColorSwatchClick(color)}
-                            style={{ backgroundColor: color }}
-                        ></div>
-                    ))}
-                </div>
+                    <div className="color-swatches-container">
+                        {hoodieColors.map(color => (
+                            <div
+                                key={color}
+                                className={`color-swatch ${color}`}
+                                onClick={() => handleColorSwatchClick(color)}
+                                style={{ backgroundColor: color }}
+                            ></div>
+                        ))}
+                    </div>
 
+                </div>
             </div>
-        </div>
+        </div >
     );
-};
+}
 
 export default FemaleHoodie;
