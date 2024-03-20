@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Examples.css';
+import JSZip from 'jszip'; // Assuming you opt for ZIP approach
+import { saveAs } from 'file-saver'; // To save the ZIP file
 
 function Examples2() {
     const [examples] = useState([
@@ -12,6 +14,50 @@ function Examples2() {
     ]);
 
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null, id: null });
+    const downloadImage = (imageSrc, filename) => {
+        // Function to trigger download for a single image
+        const link = document.createElement('a');
+        link.href = imageSrc;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    const handleDownloadAllSides = async () => {
+        const example = examples.find(e => e.id === selectedImage.id);
+        if (!example) {
+            console.error('No example selected or example does not exist.');
+            return;
+        }
+
+        const zip = new JSZip();
+
+        // Function to fetch image as blob
+        const fetchImageAsBlob = async (imageUrl) => {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            return blob;
+        };
+
+        // Add images to zip
+        const imageTypes = ['front', 'side', 'back'];
+        for (const type of imageTypes) {
+            const imageUrl = example[type];
+            if (!imageUrl) continue;
+            try {
+                const imageBlob = await fetchImageAsBlob(imageUrl);
+                zip.file(`${type}.jpg`, imageBlob, { binary: true });
+            } catch (error) {
+                console.error(`Failed to load image: ${imageUrl}`, error);
+            }
+        }
+
+        // Generate ZIP
+        zip.generateAsync({ type: "blob" })
+            .then(function (content) {
+                saveAs(content, "hoodie-designs.zip");
+            });
+    };
 
     const handleImageClick = (example, type) => {
         setSelectedImage({ src: example[type], type, id: example.id });
@@ -48,6 +94,8 @@ function Examples2() {
                         <button onClick={() => handleViewChange('front')}>Front</button>
                         <button onClick={() => handleViewChange('side')}>Side</button>
                         <button onClick={() => handleViewChange('back')}>Back</button>
+                        <button className="close-btn" onClick={closeFullscreen}>x</button>
+
                     </div>
                     <button className="close-btn" onClick={closeFullscreen}>x</button>
                 </div>
