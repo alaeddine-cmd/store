@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './MaleHoodie.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
@@ -42,6 +42,7 @@ const MaleShirt = () => {
         setSideMenuOpen(false);
     };
 
+    const sideMenuRef = useRef(null); // Reference to the side menu
 
     const hoodieRefs = {
         front: useRef(),
@@ -217,17 +218,34 @@ const MaleShirt = () => {
     };
     const currentDesign = designs[selectedView];
 
+    useEffect(() => {
+        // Function to handle click event
+        function handleClickOutside(event) {
+            if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
+                closeSideMenu();
+            }
+        }
+
+        // Add click event listener
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Clean up the event listener
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [sideMenuRef]); // Ensure the effect runs only once
 
     return (
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
         </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
+
                 <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
                 <div className="content-container">
                     <div>
-                        <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
-                            <button className="close-btn" onClick={() => setSideMenuOpen(false)}>×</button>
+                        <div ref={sideMenuRef} className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
+                            <button className="close-btn" onClick={closeSideMenu}>×</button>
 
                             <div className="example-thumbnails">
                                 {examples.map(example => (

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './MaleHoodie.css'; // Ensure all relevant styles from Examples.css are also included here
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
@@ -22,6 +22,7 @@ function MaleHoodie() {
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const sideMenuRef = useRef(null); // Reference to the side menu
 
     const openFullscreen = (image, type) => {
         setSelectedImage({ src: image, type });
@@ -45,6 +46,7 @@ function MaleHoodie() {
         side: useRef(),
         back: useRef(),
     };
+
     const [selectedView, setSelectedView] = useState('front');
     const [selectedColor, setSelectedColor] = useState('white');
     const downloadImage = (dataUrl, filename) => {
@@ -218,6 +220,22 @@ function MaleHoodie() {
     };
 
     const currentDesign = designs[selectedView];
+    useEffect(() => {
+        // Function to handle click event
+        function handleClickOutside(event) {
+            if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
+                closeSideMenu();
+            }
+        }
+
+        // Add click event listener
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Clean up the event listener
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [sideMenuRef]); // Ensure the effect runs only once
 
     return (
         <> <header className="App-header">
@@ -228,8 +246,8 @@ function MaleHoodie() {
 
                 <div className="content-container">
                     <div>
-                        <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
-                            <button className="close-btn" onClick={() => setSideMenuOpen(false)}>×</button>
+                        <div ref={sideMenuRef} className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
+                            <button className="close-btn" onClick={closeSideMenu}>×</button>
 
                             <div className="example-thumbnails">
                                 {examples.map(example => (
