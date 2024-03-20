@@ -282,10 +282,20 @@ function MaleHoodie() {
                         ))}
 
                     </div>
-
+                    <div className="color-swatches-container">
+                        {hoodieColors.map(color => (
+                            <div
+                                key={color}
+                                className={`color-swatch ${color}`}
+                                onClick={() => handleColorSwatchClick(color)}
+                                style={{ backgroundColor: color }}
+                            ></div>
+                        ))}
+                    </div>
 
                     <label className="custom-file-upload">
-                        <input type="file" onChange={handleImageUpload} /></label>
+                        <input type="file" onChange={handleImageUpload} />
+                    </label>
                     {currentDesign.src && (
                         <div className="scale-slider">
                             <label htmlFor="scaleControl">Scale Design</label>
@@ -304,6 +314,7 @@ function MaleHoodie() {
                         <button onClick={handleRemoveDesign}>Remove Design</button>
                     )}
                     <button onClick={handleDownload}>Download</button>
+
 
                 </div>
             </div>
