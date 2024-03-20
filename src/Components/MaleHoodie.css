@@ -80,9 +80,6 @@
   margin: 1rem 0;
 }
 
-.scale-slider input[type="range"] {
-  width: 100%; /* Full width within the .scale-slider container */
-}
 
 button, .custom-file-upload {
   padding: 12px 20px;
@@ -309,12 +306,12 @@ body, html {
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 15px 0px;
+  margin: 20px 10px;
 }
 
 .color-swatch {
-  width: 10px;
-  height: 10px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   transition: border 0.3s ease;
@@ -334,6 +331,7 @@ body, html {
 .scale-slider input[type="range"] {
   width: 100%; /* Full width within the .scale-slider container */
 }
+
 
 
 button, .custom-file-upload {

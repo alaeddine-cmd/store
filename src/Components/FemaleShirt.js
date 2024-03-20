@@ -299,7 +299,6 @@ const FemaleShirt = () => {
 
                     <label className="custom-file-upload">
                         <input type="file" onChange={handleImageUpload} />
-                        Upload Design
                     </label>
                     {currentDesign.src && (
                         <div className="scale-slider">
