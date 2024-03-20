@@ -218,7 +218,7 @@ const MaleShirt = () => {
 
     return (
         <div className="MaleHoodie">
-            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas!</button>
+            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
             <div className="content-container">
                 <div>
                     <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
