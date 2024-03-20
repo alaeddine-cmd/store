@@ -24,7 +24,7 @@ function Navigation() {
   return (
     <>
       <header className="App-header">
-        <h1><img src="/assets/logo_2.png" style={{ marginRight: "15px" }} alt="Stitch Switch" />Stitch Switch</h1>
+        <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
       </header>
       <div className="category-container">
         <Link to="/male-hoodie" className="category-box">
