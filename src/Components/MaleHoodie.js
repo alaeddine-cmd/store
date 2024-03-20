@@ -224,6 +224,7 @@ function MaleHoodie() {
             <div className="content-container">
                 <div>
                     <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
+                    <button className="close-btn" onClick={() => setSideMenuOpen(false)}>×</button>
 
                         <div className="example-thumbnails">
                             {examples.map(example => (

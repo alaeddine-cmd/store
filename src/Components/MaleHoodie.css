@@ -153,16 +153,7 @@ button, .custom-file-upload {
   transform: translateX(0); /* Move onto the screen when 'open' */
 }
 
-.close-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  padding: 10px;
-  cursor: pointer;
-}
+
 .idea {
   height: 2.5rem; /* Example size, adjust as needed */
   width: auto; /* Keep the aspect ratio of the image */
@@ -206,8 +197,8 @@ button, .custom-file-upload {
 
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0px;
+  right: 0px;
   background: none;
   border: none;
   font-size: 2rem; /* adjust size as needed */
@@ -352,7 +343,11 @@ button:hover, .custom-file-upload:hover {
 button:active, .custom-file-upload:active {
   transform: scale(0.98);
 }
-
+@media (max-width: 768px) {
+.close-btn{
+  right: -105px;
+}
+}
 /* Responsive media query */
 @media (max-width: 768px) {
   .thumbnail {
@@ -362,6 +357,7 @@ button:active, .custom-file-upload:active {
     max-width: 90%; /* Allow the main image to take up more space on smaller screens */
   }
 
+  
 
 
   .main-display {
