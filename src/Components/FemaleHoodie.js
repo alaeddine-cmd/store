@@ -278,7 +278,16 @@ const FemaleHoodie = () => {
                         ))}
 
                     </div>
-
+                    <div className="color-swatches-container">
+                        {hoodieColors.map(color => (
+                            <div
+                                key={color}
+                                className={`color-swatch ${color}`}
+                                onClick={() => handleColorSwatchClick(color)}
+                                style={{ backgroundColor: color }}
+                            ></div>
+                        ))}
+                    </div>
 
                     <label className="custom-file-upload">
                         <input type="file" onChange={handleImageUpload} />
@@ -303,16 +312,7 @@ const FemaleHoodie = () => {
                     )}
                     <button onClick={handleDownload}>Download</button>
 
-                    <div className="color-swatches-container">
-                        {hoodieColors.map(color => (
-                            <div
-                                key={color}
-                                className={`color-swatch ${color}`}
-                                onClick={() => handleColorSwatchClick(color)}
-                                style={{ backgroundColor: color }}
-                            ></div>
-                        ))}
-                    </div>
+
 
                 </div>
             </div>

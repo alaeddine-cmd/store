@@ -166,6 +166,13 @@ button, .custom-file-upload {
   padding: 10px;
   cursor: pointer;
 }
+.idea {
+  height: 2.5rem; /* Example size, adjust as needed */
+  width: auto; /* Keep the aspect ratio of the image */
+  vertical-align: middle; /* Align it vertically with the text */
+  margin-right: 0.5rem; /* Add some space to the right of the image */
+  margin-bottom: 1rem;
+}
 
 @media (max-width: 768px) {
   .fullscreen-content img {

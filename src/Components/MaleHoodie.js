@@ -219,7 +219,7 @@ function MaleHoodie() {
 
     return (
         <div className="MaleHoodie">
-            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas!</button>
+            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
 
             <div className="content-container">
                 <div>
@@ -283,7 +283,16 @@ function MaleHoodie() {
 
                     </div>
 
-
+                    <div className="color-swatches-container">
+                        {hoodieColors.map(color => (
+                            <div
+                                key={color}
+                                className={`color-swatch ${color}`}
+                                onClick={() => handleColorSwatchClick(color)}
+                                style={{ backgroundColor: color }}
+                            ></div>
+                        ))}
+                    </div>
                     <label className="custom-file-upload">
                         <input type="file" onChange={handleImageUpload} />
                         Upload Design
@@ -307,16 +316,6 @@ function MaleHoodie() {
                     )}
                     <button onClick={handleDownload}>Download</button>
 
-                    <div className="color-swatches-container">
-                        {hoodieColors.map(color => (
-                            <div
-                                key={color}
-                                className={`color-swatch ${color}`}
-                                onClick={() => handleColorSwatchClick(color)}
-                                style={{ backgroundColor: color }}
-                            ></div>
-                        ))}
-                    </div>
                 </div>
             </div>
         </div >
