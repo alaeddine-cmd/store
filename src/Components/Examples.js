@@ -58,9 +58,11 @@ function Examples() {
                 saveAs(content, "hoodie-designs.zip");
             });
     };
+    const [fullscreen, setFullscreen] = useState(false); // State to control fullscreen mode
 
     const handleImageClick = (example, type) => {
         setSelectedImage({ src: example[type], type, id: example.id });
+        setFullscreen(true); // Enable fullscreen mode
     };
 
     const handleViewChange = (type) => {
@@ -74,12 +76,11 @@ function Examples() {
 
     const closeFullscreen = () => {
         setSelectedImage({ src: null, type: null, id: null });
+        setFullscreen(false); // Disable fullscreen mode
     };
-
     return (
         <div className="examples-container">
-            {/*             <h2 className="examples-title">Examples</h2> 
- */}
+
             <div className="example-thumbnails">
                 {examples.map(example => (
                     <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
@@ -87,17 +88,21 @@ function Examples() {
                     </div>
                 ))}
             </div>
-            {selectedImage.src && (
-                <div className="fullscreen-container">
-                    <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
-                    <div className="view-controls">
-                        <button onClick={() => handleViewChange('front')}>Front</button>
-                        <button onClick={() => handleViewChange('side')}>Side</button>
-                        <button onClick={() => handleViewChange('back')}>Back</button>
-                        <button onClick={handleDownloadAllSides}>Download</button>
 
+
+            {fullscreen && selectedImage.src && (
+                <div className="fullscreen-overlay">
+                    <div className="fullscreen-content">
+                        <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
+                        <div className="view-controls">
+                            <button onClick={() => handleViewChange('front')}>Front</button>
+                            <button onClick={() => handleViewChange('side')}>Side</button>
+                            <button onClick={() => handleViewChange('back')}>Back</button>
+                            <button onClick={handleDownloadAllSides}>Download</button>
+
+                        </div>
+                        <button className="close-btn" onClick={closeFullscreen}>x</button>
                     </div>
-                    <button className="close-btn" onClick={closeFullscreen}>x</button>
                 </div>
             )}
 

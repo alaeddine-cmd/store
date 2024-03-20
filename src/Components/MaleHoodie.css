@@ -1,79 +1,172 @@
-@media (max-width: 768px) {
-  .content-container {
-    display: flex;
-    align-items: flex-start; /* Align items to the top */
-}
-
-.examples-container {
-  margin-left: 20px; /* Spacing between sidebar and hoodie container */
-  margin-right: 20px;
-}
-  .hoodie-container, .color-swatches-container {
-    width: 100%; /* Full width on smaller screens */
-    margin: 10px 0; /* Adjust margins for vertical layout */
-  }
-
-  .scale-slider input[type="range"] {
-    width: 100%; /* Full width for the slider */
-  }
-}
-
+/* Base and reset styles */
 .MaleHoodie {
   text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #fff; /* or any color that fits your brand */
+}
+.content-container {
+  display: flex; /* Use flexbox for layout */
+  align-items: flex-start; /* Align the children to the top */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 16px; /* Base font size */
+  line-height: 1.6;
+}
+
+/* Main hoodie application styling */
+.MaleHoodie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .main-display {
   position: relative;
-  width: 100%;
-  max-width: 300px; /* Adjust based on actual image size */
+  max-width: 400px; /* Adjust this value as needed */
   margin: 20px auto;
-  overflow: visible;
 }
-
-
+.hoodie-container {
+  flex: 1; /* Take the remaining space */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+}
 
 .hoodie-image {
-  width: 100%;
-  display: block;
+  width: 100%; /* Full width within the .main-display container */
+  height: auto;
+  margin-bottom: 2rem; /* Space below the main image */
 }
 
-.overlay-design {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 100px; /* Adjust based on design size */
-}
-
+/* Styling for thumbnail images */
 .thumbnail-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .thumbnail {
-  width: 10vw; /* Adjust based on your preference */
-  max-width: 50px;
-  min-width: 30px; /* Ensure thumbnails don't become too small */
-  margin: 0 5px; /* Adjust margin as needed */
+  width: 10%; /* Smaller percentage for larger screen to fit in a row */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-.thumbnail:hover {
-  opacity: 0.8;
+.thumbnail.active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.color-swatches {
-  margin: 10px 0;
+/* Swatch container with a flex wrap */
+.color-swatches-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 10px;
 }
 
 .color-swatch {
   width: 40px;
   height: 40px;
-  border-radius: 20px;
-  margin: 0 5px;
+  border-radius: 50%;
   cursor: pointer;
+  transition: border 0.3s ease;
+}
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+.color-swatch.active {
+  border: 2px solid #007bff;
+}
+
+/* Slider and buttons */
+.scale-slider {
+  width: 90%; /* Take up most of the width on mobile */
+  margin: 1rem 0;
+}
+.scale-slider input[type="range"] {
+  width: 100%; /* Full width within the .scale-slider container */
+}
+
+
+button, .custom-file-upload {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px 5px; /* Slight margin for spacing */
+  transition: all 0.3s ease;
+}
+
+button:hover, .custom-file-upload:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+button:active, .custom-file-upload:active {
+  transform: scale(0.98);
+}
+
+/* Responsive media query */
+@media (max-width: 768px) {
+  .thumbnail {
+    width: 15%; /* Larger percentage for smaller screen to fit in two columns */
+  }
+  .main-display {
+    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
+  }
+
+
+
+  .main-display {
+    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
+  }
+
+  .color-swatch {
+    width: 35px;
+    height: 35px; /* Adjust the swatches for smaller screens */
+  }
+
+  button, .custom-file-upload {
+    width: 100%; /* Full width buttons for easier touch access */
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hoodie-image {
+    width: 100%; /* Full width on extra small screens */
+  }
+
+  .main-display {
+    margin-top: 10px;
+  }
+
+  button, .custom-file-upload {
+    width: calc(50% - 10px); /* Half width minus margin for two buttons side by side */
+    font-size: 0.9rem; /* Slightly smaller font on mobile for buttons */
+  }
 }
 
 .color-swatch.white {
@@ -257,188 +350,3 @@
   background-color: #2a3f50!important;
 }
 
-
-
-.thumbnail.active {
-  border: 2px solid #585b5f; /* Indicates the active view */
-}
-
-/* Existing styles... */
-
-.overlay-design {
-  cursor: grab;
-}
-.react-resizable-handle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #000;
-  z-index: 10;
-}
-
-.react-resizable-handle-se {
-  right: 0;
-  bottom: 0;
-  cursor: se-resize;
-}
-
-.thumbnail.active {
-  border: 2px solid #585b5f;
-}
-
-/* Button styles */
-button {
-  padding: 10px 20px;
-  background-color: #313335; /* Change the background color as you like */
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-right: 10px;
-  margin-top: 10px;
-
-}
-
-button:hover {
-  background-color: #585b5f; /* Darker shade for hover state */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-button:active {
-  background-color: #585b5f; /* Even darker shade for active state */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-button:focus {
-  outline: none; /* Removes the outline on focus for browsers that show one */
-}
-
-/* Additional styles for file input */
-input[type="file"] {
-  display: none; /* Hide the default input */
-}
-
-.custom-file-upload {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background-color: #313335;
-  color: white;
-  border-radius: 5px;
-  margin-right: 10px; /* Add some space between the button and the file input */
-}
-
-.custom-file-upload:hover {
-  background-color: #585b5f;
-}
-
-.content-container {
-  display: flex;
-  justify-content: center; /* Centers children horizontally */
-  align-items: center; /* Centers children vertically */
-  height: 100vh; /* Set to the height of the viewport for vertical centering */
-}
-
-
-.hoodie-container {
-  margin-right: 20px; /* Optional: Adds some space between the hoodie and the swatches */
-  margin-left: 20px;
-}
-.color-swatches-container {
-  margin-right: 20px;
-  margin-left: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Creates as many columns as can fit */
-  grid-gap: 5px; /* Spacing between swatches */
-  justify-content: center;
-}
-
-.color-swatches-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the color swatches vertically */
-  margin: 5px; /* Gives space between columns */
-}
-
-.color-swatch {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-bottom: 5px; /* space between rows */
-  cursor: pointer;
-}
-
-
-
-
-/* Clear fix for nth-child */
-.color-swatch:nth-child(3n+1) {
-  clear: both;
-}
-
-
-.color-swatch:hover {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Slider styles */
-.scale-slider {
-  margin: 10px 0;
-}
-
-.scale-slider label {
-  margin-right: 10px;
-}
-
-.scale-slider input[type="range"] {
-  width: 200px; /* Adjust the width as you like */
-}
-
-.design-container {
-  position: relative;
-}
-
-
-
-.delete-button {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 0 5px;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-.design-container:hover .delete-button {
-  display: block; /* Show delete button on hover */
-}
-.themes-sidebar {
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-}
-
-.theme-thumbnail {
-  margin-bottom: 10px; /* Spacing between thumbnails */
-  cursor: pointer; /* Indicate clickable items */
-}
-
-.theme-thumbnail img {
-  width: 40px; /* Set a fixed width */
-  height: auto; /* Maintain aspect ratio */
-}

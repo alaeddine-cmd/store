@@ -28,7 +28,7 @@ function MaleHoodie() {
     };
     const handleDownload = async () => {
         const activeDisplayRef = hoodieRefs[selectedView].current;
-    
+
         if (activeDisplayRef && designs[selectedView].src) {
             // Consider offering the user to choose a higher scale for better quality
             const scale = window.devicePixelRatio * 2; // Example: doubling the scale for better quality
@@ -37,22 +37,22 @@ function MaleHoodie() {
                 useCORS: true,
                 logging: true, // Consider turning off in production
             });
-    
+
             // Example: allowing user to choose format and quality. Here we use JPEG for illustration.
             const imageQuality = 0.9; // Quality from 0 to 1, applicable for 'image/jpeg'
             const dataUrl = canvas.toDataURL('image/jpeg', imageQuality);
-            
+
             downloadImage(dataUrl, `custom-hoodie-${selectedView}.jpeg`); // Adjust file extension based on format
         } else {
             console.error(`No design for ${selectedView} view or element not rendered`);
         }
-    
+
         // Download the original uploaded image
         if (designs[selectedView].src) {
             downloadImage(designs[selectedView].src, `original-design-${selectedView}.png`);
         }
     };
-    
+
 
     const handleThumbnailClick = (view) => {
         setSelectedView(view);
@@ -147,12 +147,11 @@ function MaleHoodie() {
     return (
         <div className="MaleHoodie">
             <div className="content-container">
-                <div className="examples-container">
+                <div>
                     <Examples />
+
                 </div>
                 <div className="hoodie-container">
-
-
 
                     <div className="main-display" ref={hoodieRefs[selectedView]}>
                         <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
@@ -187,6 +186,26 @@ function MaleHoodie() {
 
                     </div>
 
+
+                    <label className="custom-file-upload">
+                        <input type="file" onChange={handleImageUpload} />
+                        Upload Design
+                    </label>
+                    {designs[selectedView].src && (
+                        <button onClick={handleRemoveDesign}>Remove Design</button>
+                    )}
+                    <button onClick={handleDownload}>Download</button>
+
+                    <div className="color-swatches-container">
+                        {hoodieColors.map(color => (
+                            <div
+                                key={color}
+                                className={`color-swatch ${color}`}
+                                onClick={() => handleColorSwatchClick(color)}
+                                style={{ backgroundColor: color }}
+                            ></div>
+                        ))}
+                    </div>
                     {currentDesign.src && (
                         <div className="scale-slider">
                             <label htmlFor="scaleControl">Scale Design</label>
@@ -201,24 +220,6 @@ function MaleHoodie() {
                             />
                         </div>
                     )}
-                    <label className="custom-file-upload">
-                        <input type="file" onChange={handleImageUpload} />
-                        Upload Design
-                    </label>
-                    {designs[selectedView].src && (
-                        <button onClick={handleRemoveDesign}>Remove Design</button>
-                    )}
-                    <button onClick={handleDownload}>Download</button>
-                </div>
-                <div className="color-swatches-container">
-                    {hoodieColors.map(color => (
-                        <div
-                            key={color}
-                            className={`color-swatch ${color}`}
-                            onClick={() => handleColorSwatchClick(color)}
-                            style={{ backgroundColor: color }}
-                        ></div>
-                    ))}
                 </div>
             </div>
         </div >
