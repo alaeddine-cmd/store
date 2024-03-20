@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
+import backgroundImage from "./wall.jpg";
 
 const MaleShirt = () => {
     const [designs, setDesigns] = useState({
@@ -221,8 +222,8 @@ const MaleShirt = () => {
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
         </header>
-            <div className="MaleHoodie">
-            <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+            <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
+                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
                 <div className="content-container">
                     <div>
                         <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>

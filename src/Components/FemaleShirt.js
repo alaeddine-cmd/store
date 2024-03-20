@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
+import backgroundImage from "./wall.jpg";
 
 const FemaleShirt = () => {
     const [designs, setDesigns] = useState({
@@ -227,8 +228,8 @@ const FemaleShirt = () => {
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
         </header>
-            <div className="MaleHoodie">
-            <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+            <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
+                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
                 <div className="content-container">
                     <div>
                         <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
@@ -253,7 +254,7 @@ const FemaleShirt = () => {
                                         <button onClick={() => handleViewChange('front')}>Front</button>
                                         <button onClick={() => handleViewChange('side')}>Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
-                                        <button className="button-download"  onClick={handleDownloadAllSides}>Download</button>
+                                        <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
                                 </div>
                                 <button className="close-btn" onClick={closeFullscreen}>(x)</button>
@@ -319,10 +320,10 @@ const FemaleShirt = () => {
                                 />
                             </div>
                         )}
-                          {designs[selectedView].src && (
+                        {designs[selectedView].src && (
                             <button className="rmv-button" onClick={handleRemoveDesign}>Remove Design</button>
                         )}
-                        <button  className="download-button" onClick={handleDownload}>Download</button>
+                        <button className="download-button" onClick={handleDownload}>Download</button>
 
 
                     </div>

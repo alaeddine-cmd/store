@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
+import backgroundImage from "./wall.jpg";
 
 function MaleHoodie() {
     const [designs, setDesigns] = useState({
@@ -222,7 +223,7 @@ function MaleHoodie() {
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
         </header>
-            <div className="MaleHoodie">
+            <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
                 <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
 
                 <div className="content-container">
@@ -249,7 +250,7 @@ function MaleHoodie() {
                                         <button onClick={() => handleViewChange('front')}>Front</button>
                                         <button onClick={() => handleViewChange('side')}>Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
-                                        <button className="button-download"  onClick={handleDownloadAllSides}>Download</button>
+                                        <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
                                 </div>
                                 <button className="close-btn" onClick={closeFullscreen}>(x)</button>
@@ -318,7 +319,7 @@ function MaleHoodie() {
                         {designs[selectedView].src && (
                             <button className="rmv-button" onClick={handleRemoveDesign}>Remove Design</button>
                         )}
-                        <button  className="download-button" onClick={handleDownload}>Download</button>
+                        <button className="download-button" onClick={handleDownload}>Download</button>
 
 
                     </div>
