@@ -217,108 +217,112 @@ const MaleShirt = () => {
 
 
     return (
-        <div className="MaleHoodie">
-            <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Some Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
-            <div className="content-container">
-                <div>
-                    <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
-                        <button className="close-btn" onClick={() => setSideMenuOpen(false)}>×</button>
+        <> <header className="App-header">
+            <h1><img src="/assets/logo_2.png" style={{ marginRight: "15px" }} alt="Stitch Switch" />Stitch Switch</h1>
+        </header>
+            <div className="MaleHoodie">
+                <button onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+                <div className="content-container">
+                    <div>
+                        <div className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
+                            <button className="close-btn" onClick={() => setSideMenuOpen(false)}>×</button>
 
-                        <div className="example-thumbnails">
-                            {examples.map(example => (
-                                <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
-                                    <img src={example.front} className="example-image" alt="Front view" />
+                            <div className="example-thumbnails">
+                                {examples.map(example => (
+                                    <div key={example.id} className="example-thumbnail" onClick={() => handleImageClick(example, 'front')}>
+                                        <img src={example.front} className="example-image" alt="Front view" />
+                                    </div>
+                                ))}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="hoodie-container">
+                        {isFullscreen && selectedImage.src && (
+                            <div className="fullscreen-overlay" onClick={closeFullscreen}>
+                                <div className="fullscreen-content" onClick={e => e.stopPropagation()}>
+                                    <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
+                                    <div className="fullscreen-controls">
+                                        <button onClick={() => handleViewChange('front')}>Front</button>
+                                        <button onClick={() => handleViewChange('side')}>Side</button>
+                                        <button onClick={() => handleViewChange('back')}>Back</button>
+                                        <button onClick={handleDownloadAllSides}>Download</button>
+                                    </div>
                                 </div>
+                                <button className="close-btn" onClick={closeFullscreen}>(x)</button>
+                            </div>
+                        )}
+                        <div className="main-display" ref={hoodieRefs[selectedView]}>
+                            <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
+                            {currentDesign.src && (
+                                <Draggable bounds="parent" onDrag={handleDrag} position={{ x: currentDesign.x, y: currentDesign.y }}>
+                                    <img
+                                        src={currentDesign.src}
+                                        alt="Custom Design"
+                                        style={{
+                                            width: `${currentDesign.scale * 100}%`,
+                                            height: 'auto',
+                                            position: 'absolute',
+                                            cursor: 'move',
+                                            pointerEvents: 'all',
+                                        }}
+                                        onWheel={handleWheel}
+                                    />
+                                </Draggable>
+                            )}
+                        </div>
+
+                        <div className="thumbnail-container">
+                            {Object.keys(hoodieImages[selectedColor]).map((view) => (
+                                <img
+                                    key={view}
+                                    src={hoodieImages[selectedColor][view]}
+                                    alt={`${view} view`}
+                                    onClick={() => handleThumbnailClick(view)}
+                                    className={`thumbnail ${selectedView === view ? 'active' : ''}`}
+                                />
+                            ))}
+
+                        </div>
+                        <div className="color-swatches-container">
+                            {hoodieColors.map(color => (
+                                <div
+                                    key={color}
+                                    className={`color-swatch ${color}`}
+                                    onClick={() => handleColorSwatchClick(color)}
+                                    style={{ backgroundColor: color }}
+                                ></div>
                             ))}
                         </div>
 
-                    </div>
-                </div>
-                <div className="hoodie-container">
-                    {isFullscreen && selectedImage.src && (
-                        <div className="fullscreen-overlay" onClick={closeFullscreen}>
-                            <div className="fullscreen-content" onClick={e => e.stopPropagation()}>
-                                <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
-                                <div className="fullscreen-controls">
-                                    <button onClick={() => handleViewChange('front')}>Front</button>
-                                    <button onClick={() => handleViewChange('side')}>Side</button>
-                                    <button onClick={() => handleViewChange('back')}>Back</button>
-                                    <button onClick={handleDownloadAllSides}>Download</button>
-                                </div>
-                            </div>
-                            <button className="close-btn" onClick={closeFullscreen}>(x)</button>
-                        </div>
-                    )}
-                    <div className="main-display" ref={hoodieRefs[selectedView]}>
-                        <img src={renderHoodieImage()} alt={`${selectedColor} hoodie`} className="hoodie-image" />
+                        <label className="custom-file-upload">
+                            <input type="file" onChange={handleImageUpload} />
+                        </label>
                         {currentDesign.src && (
-                            <Draggable bounds="parent" onDrag={handleDrag} position={{ x: currentDesign.x, y: currentDesign.y }}>
-                                <img
-                                    src={currentDesign.src}
-                                    alt="Custom Design"
-                                    style={{
-                                        width: `${currentDesign.scale * 100}%`,
-                                        height: 'auto',
-                                        position: 'absolute',
-                                        cursor: 'move',
-                                        pointerEvents: 'all',
-                                    }}
-                                    onWheel={handleWheel}
+                            <div className="scale-slider">
+                                <label htmlFor="scaleControl">Scale Design</label>
+                                <input
+                                    id="scaleControl"
+                                    type="range"
+                                    min="0.1"
+                                    max=".5"
+                                    step="0.01"
+                                    value={currentDesign.scale}
+                                    onChange={(e) => handleScaleChange(e, selectedView)}
                                 />
-                            </Draggable>
+                            </div>
                         )}
-                    </div>
+                        {designs[selectedView].src && (
+                            <button onClick={handleRemoveDesign}>Remove Design</button>
+                        )}
+                        <button onClick={handleDownload}>Download</button>
 
-                    <div className="thumbnail-container">
-                        {Object.keys(hoodieImages[selectedColor]).map((view) => (
-                            <img
-                                key={view}
-                                src={hoodieImages[selectedColor][view]}
-                                alt={`${view} view`}
-                                onClick={() => handleThumbnailClick(view)}
-                                className={`thumbnail ${selectedView === view ? 'active' : ''}`}
-                            />
-                        ))}
+
 
                     </div>
-                    <div className="color-swatches-container">
-                        {hoodieColors.map(color => (
-                            <div
-                                key={color}
-                                className={`color-swatch ${color}`}
-                                onClick={() => handleColorSwatchClick(color)}
-                                style={{ backgroundColor: color }}
-                            ></div>
-                        ))}
-                    </div>
-
-                    <label className="custom-file-upload">
-                        <input type="file" onChange={handleImageUpload} />
-                    </label>
-                    {currentDesign.src && (
-                        <div className="scale-slider">
-                            <label htmlFor="scaleControl">Scale Design</label>
-                            <input
-                                id="scaleControl"
-                                type="range"
-                                min="0.1"
-                                max=".5"
-                                step="0.01"
-                                value={currentDesign.scale}
-                                onChange={(e) => handleScaleChange(e, selectedView)}
-                            />
-                        </div>
-                    )}
-                    {designs[selectedView].src && (
-                        <button onClick={handleRemoveDesign}>Remove Design</button>
-                    )}
-                    <button onClick={handleDownload}>Download</button>
-
-
-
                 </div>
-            </div>
-        </div >
+            </div >
+        </>
     );
 };
 
