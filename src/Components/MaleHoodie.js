@@ -16,9 +16,10 @@ function MaleHoodie() {
     const [examples] = useState([
         { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/messi-back.jpeg' },
         { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
-        { id: 3, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
-        { id: 4, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
-        { id: 5, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', back: '/assets/hihi.jpeg' },
+        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/cr7-back.jpeg' },
+        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
+        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
+        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', back: '/assets/hihi.jpeg' },
 
     ]);
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
