@@ -27,18 +27,12 @@ function MaleHoodie() {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const sideMenuRef = useRef(null); // Reference to the side menu
 
-    const openFullscreen = (image, type) => {
-        setSelectedImage({ src: image, type });
-        setIsFullscreen(true);
-    };
+
     // Function to close the full-screen overlay
     const closeFullscreen = () => {
         setIsFullscreen(false);
     };
 
-    const toggleSideMenu = () => {
-        setSideMenuOpen(!sideMenuOpen);
-    };
 
     const closeSideMenu = () => {
         setSideMenuOpen(false);
@@ -183,9 +177,7 @@ function MaleHoodie() {
             console.error('The requested image does not exist.');
         }
     };
-    const numberOfColors = hoodieColors.length;
-    const colorsPerRow = 2;
-    const numberOfRows = Math.ceil(numberOfColors / colorsPerRow);
+
     const handleWheel = (e) => {
         e.preventDefault();
         const scaleIncrement = 0.05;
@@ -245,7 +237,7 @@ function MaleHoodie() {
             <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
         </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
-                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" alt='idea' /></button>
 
                 <div className="content-container">
                     <div>
