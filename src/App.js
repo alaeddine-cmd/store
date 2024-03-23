@@ -24,7 +24,8 @@ function Navigation() {
   return (
     <>
       <header className="App-header">
-        <h1><Link to="/"><img src="/assets/logo_2.png" className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
+        <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight:"10px" }}
+          className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
       </header>
       <section className="how-it-works">
         <h2>How it works!</h2>
