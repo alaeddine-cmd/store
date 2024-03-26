@@ -24,7 +24,7 @@ function Navigation() {
   return (
     <>
       <header className="App-header">
-        <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight:"10px" }}
+        <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "10px" }}
           className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
       </header>
       <section className="how-it-works">
@@ -41,20 +41,36 @@ function Navigation() {
       <div className="category-container">
         <Link to="/male-hoodie" className="category-box">
           <div className="image-overlay">Men's Hoodies</div>
-          <img src="/assets/male-hoodie.jpg" alt="Male Hoodie" />
+          <img src="/assets/male-hoodie.png" alt="Male Hoodie" />
         </Link>
         <Link to="/female-hoodie" className="category-box">
           <div className="image-overlay">Women's Hoodies</div>
-          <img src="/assets/woman-hoodie.jpg" alt="Female Hoodie" />
+          <img src="/assets/woman-hoodie.png" alt="Female Hoodie" />
         </Link>
         <Link to="/male-shirt" className="category-box">
           <div className="image-overlay">Men's Shirts</div>
-          <img src="/assets/male-t-shirt.jpg" alt="Male Shirt" />
+          <img src="/assets/male-t-shirt.png" alt="Male Shirt" />
         </Link>
         <Link to="/female-shirt" className="category-box">
           <div className="image-overlay">Women's Shirts</div>
-          <img src="/assets/woman-t-shirt.jpg" alt="Female Shirt" />
+          <img src="/assets/woman-t-shirt.png" alt="Female Shirt" />
+        </Link>{/* 
+        <Link to="/male-sweatshirt" className="category-box">
+          <div className="image-overlay">Men's Sweatshirts</div>
+          <img src="/assets/male-sweatshirt.png" alt="male sweatshirt" />
         </Link>
+        <Link to="/male-sweatshirt" className="category-box">
+          <div className="image-overlay">Women's Sweatshirts</div>
+          <img src="/assets/female-sweatshirt.png" alt="Female Shirt" />
+        </Link>
+        <Link to="/male-tank" className="category-box">
+          <div className="image-overlay">Men's Tanks</div>
+          <img src="/assets/male-tank.png" alt="Male tank" />
+        </Link>
+        <Link to="/oversize-t-shirt-women" className="category-box">
+          <div className="image-overlay">Women's oversize Shirts</div>
+          <img src="/assets/oversize-women.png" alt="Female Shirt" />
+        </Link> */}
       </div>
     </>
   );
