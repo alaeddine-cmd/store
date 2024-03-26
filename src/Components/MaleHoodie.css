@@ -446,6 +446,11 @@ button:active, .custom-file-upload:active {
 .color-swatch.sage {
   background-color: #90adab;
 }
+
+.color-swatch.silver {
+  background-color: #bec2c4;
+}
+
 .color-swatch.Military_Green_Heather
 {
   background-color: #495148;
@@ -508,6 +513,21 @@ button:active, .custom-file-upload:active {
 {
   background-color: #fffaeb;
 }
+
+
+.color-swatch.mauvelous{
+  background-color: #c67977!important;
+
+}
+.color-swatch.granite_heather{
+  background-color: #837d87!important;
+
+}
+
+.color-swatch.true_navy
+{
+  background-color: #262c44;
+}
 .color-swatch.Sand
 {
   background-color: #d3c6b6;
@@ -526,10 +546,21 @@ button:active, .custom-file-upload:active {
 }.color-swatch.Gold
 {
   background-color: #efba00;
-}.color-swatch.Neon_Yellow
+}.color-swatch.deep_heather
+{
+  background-color: #6e6e6e;
+}
+
+.color-swatch.dark_grey
+{
+  background-color: #333;
+}
+
+.color-swatch.Neon_Yellow
 {
   background-color: #d1df33;
-}.color-swatch.Kiwi
+}
+.color-swatch.Kiwi
 {
   background-color: #71b85e;
 }
@@ -537,9 +568,14 @@ button:active, .custom-file-upload:active {
 {
   background-color: #03a060;
 }
+
+.color-swatch.heather_true_royal
+{
+  background-color: #576daa!important;
+}
 .color-swatch.green
 {
-  background-color: #50514c!important;
+  background-color: #565b45!important;
 }
 .color-swatch.Forest_Green
 {

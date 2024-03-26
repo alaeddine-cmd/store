@@ -5,6 +5,11 @@ import MaleHoodie from './Components/MaleHoodie';
 import FemaleHoodie from './Components/FemaleHoodie';
 import MaleShirt from './Components/MaleShirt';
 import FemaleShirt from './Components/FemaleShirt';
+import MaleSweatShirt from './Components/MaleSweatShirt';
+import FemaleSweatShirt from './Components/FemaleSweatShirt';
+import MaleTank from './Components/MaleTank';
+import FemaleOverShirt from './Components/FemaleOverShirt';
+
 
 function App() {
   return (
@@ -15,6 +20,12 @@ function App() {
         <Route path="/female-hoodie" element={<FemaleHoodie />} />
         <Route path="/male-shirt" element={<MaleShirt />} />
         <Route path="/female-shirt" element={<FemaleShirt />} />
+
+
+        <Route path="/male-sweatshirt" element={<MaleSweatShirt />} />
+        <Route path="/female-sweatshirt" element={<FemaleSweatShirt />} />
+        <Route path="/male-tank" element={<MaleTank />} />
+        <Route path="/oversize-t-shirt-women" element={<FemaleOverShirt />} />
       </Routes>
     </div>
   );
@@ -54,12 +65,12 @@ function Navigation() {
         <Link to="/female-shirt" className="category-box">
           <div className="image-overlay">Women's Shirts</div>
           <img src="/assets/woman-t-shirt.png" alt="Female Shirt" />
-        </Link>{/* 
-        <Link to="/male-sweatshirt" className="category-box">
+        </Link>
+{/*         <Link to="/male-sweatshirt" className="category-box">
           <div className="image-overlay">Men's Sweatshirts</div>
           <img src="/assets/male-sweatshirt.png" alt="male sweatshirt" />
         </Link>
-        <Link to="/male-sweatshirt" className="category-box">
+        <Link to="/female-sweatshirt" className="category-box">
           <div className="image-overlay">Women's Sweatshirts</div>
           <img src="/assets/female-sweatshirt.png" alt="Female Shirt" />
         </Link>
