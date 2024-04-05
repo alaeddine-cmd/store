@@ -50,7 +50,7 @@ const FemaleSweatShirt = () => {
         back: useRef(),
     };
     const [selectedView, setSelectedView] = useState('front');
-    const [selectedColor, setSelectedColor] = useState('heather');
+    const [selectedColor, setSelectedColor] = useState('charcoal');
     const downloadImage = (dataUrl, filename) => {
         const link = document.createElement('a');
         link.href = dataUrl;
@@ -125,7 +125,7 @@ const FemaleSweatShirt = () => {
             back: `${base}${formattedColor}_back_sweatshirt_fem.jpg`,
         };
     }
-    const hoodieColors = ['heather', 'black', 'heather_navy', 'dark_grey_heather', 'pink',
+    const hoodieColors = ['charcoal', 'jet_black', 'he_loganberry'
     ];
     const hoodieImages = hoodieColors.reduce((acc, color) => {
         acc[color] = generateHoodiePaths(color);

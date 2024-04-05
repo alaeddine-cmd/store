@@ -14,10 +14,10 @@ const MaleTank = () => {
         back: { src: null, x: 50, y: 50, scale: 1 },
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/deathnote.jpeg', side: '/assets/black_side_shirt.jpg', back: '/assets/black_back_shirt.jpg' },
-        { id: 2, front: '/assets/dodo.jpeg', side: '/assets/NAVY_side_shirt.jpg', back: '/assets/NAVY_back_shirt.jpg' },
-        { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
-        { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
+        { id: 1, front: '/assets/custom-hoodie-front (3).jpeg', side: '/assets/white_side_tank.jpg', back: '/assets/white_back_tank.jpg' },
+        { id: 2, front: '/assets/custom-hoodie-front (2).jpeg', side: '/assets/black_side_tank.jpg', back: '/assets/black_back_tank.jpg' },
+        { id: 3, front: '/assets/black_front_tank.jpg', side: '/assets/black_side_tank.jpg', back: '/assets/goku.jpeg' },
+        { id: 4, front: '/assets/super.jpeg', side: '/assets/true_navy_side_tank.jpg', back: '/assets/true_navy_back_tank.jpg' },
 
         // Add other examples as necessary
     ]);

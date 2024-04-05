@@ -12,14 +12,15 @@ function MaleHoodie() {
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
+        additional: { src: null, x: 50, y: 50, scale: 1 },
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/messi-back.jpeg' },
-        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
-        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/cr7-back.jpeg' },
-        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
-        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
-        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', back: '/assets/hihi.jpeg' },
+        { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg', back: '/assets/messi-back.jpeg' },
+        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', additional:'/assets/white_hoodie_additional.jpg',back: '/assets/white_back_hoodie.jpg' },
+        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg',back: '/assets/cr7-back.jpeg' },
+        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg',back: '/assets/black_back_hoodie.jpg' },
+        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', additional:'/assets/blue_hoodie_additional.jpg',back: '/assets/blue_back_hoodie.jpg' },
+        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', additional:'/assets/sport_grey_hoodie_additional.jpg',back: '/assets/hihi.jpeg' },
 
     ]);
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
@@ -42,6 +43,8 @@ function MaleHoodie() {
         front: useRef(),
         side: useRef(),
         back: useRef(),
+        additional: useRef(),
+
     };
 
     const [selectedView, setSelectedView] = useState('front');
@@ -117,6 +120,7 @@ function MaleHoodie() {
         return {
             front: `${base}${formattedColor}_front_hoodie.jpg`,
             side: `${base}${formattedColor}_side_hoodie.jpg`,
+            additional: `${base}${formattedColor}_hoodie_additional.jpg`, // Add this line
             back: `${base}${formattedColor}_back_hoodie.jpg`,
         };
     }
@@ -130,6 +134,7 @@ function MaleHoodie() {
     const renderHoodieImage = () => {
         return hoodieImages[selectedColor][selectedView];
     };
+
     const handleDownloadAllSides = async () => {
         const example = examples.find(e => e.id === selectedImage.id);
         if (!example) {
@@ -147,7 +152,7 @@ function MaleHoodie() {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back'];
+        const imageTypes = ['front', 'side', 'back', 'additional']; 
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -261,7 +266,8 @@ function MaleHoodie() {
                                     <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
                                     <div className="fullscreen-controls">
                                         <button onClick={() => handleViewChange('front')}>Front</button>
-                                        <button onClick={() => handleViewChange('side')}>Side</button>
+                                        <button onClick={() => handleViewChange('side')}>Right Side</button>
+                                        <button onClick={() => handleViewChange('additional')}>Left Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
                                         <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
@@ -299,7 +305,6 @@ function MaleHoodie() {
                                     className={`thumbnail ${selectedView === view ? 'active' : ''}`}
                                 />
                             ))}
-
                         </div>
                         <div className="color-swatches-container">
                             {hoodieColors.map(color => (

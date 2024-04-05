@@ -14,8 +14,8 @@ const FemaleOverShirt = () => {
         back: { src: null, x: 50, y: 50, scale: 1 },
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/deathnote.jpeg', side: '/assets/black_side_shirt.jpg', back: '/assets/black_back_shirt.jpg' },
-        { id: 2, front: '/assets/dodo.jpeg', side: '/assets/NAVY_side_shirt.jpg', back: '/assets/NAVY_back_shirt.jpg' },
+        { id: 1, front: '/assets/cofee.jpeg', side: '/assets/white_side_over_shirt_fem.jpg', back: '/assets/white_back_over_shirt_fem.jpg' },
+        { id: 2, front: '/assets/teddy.jpeg', side: '/assets/black_side_over_shirt_fem.jpg', back: '/assets/black_back_over_shirt_fem.jpg' },
         { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
         { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
 
@@ -124,7 +124,7 @@ const FemaleOverShirt = () => {
             back: `${base}${formattedColor}_back_over_shirt_fem.jpg`,
         };
     }
-    const hoodieColors = ['white', 'black', 'granite_heather', 'mauvelous',
+    const hoodieColors = ['white', 'black', 'light_blue', 'athletic_yellow',
     ];
     const hoodieImages = hoodieColors.reduce((acc, color) => {
         acc[color] = generateHoodiePaths(color);

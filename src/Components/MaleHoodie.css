@@ -514,6 +514,15 @@ button:active, .custom-file-upload:active {
   background-color: #fffaeb;
 }
 
+.color-swatch.light_blue
+{
+  background-color: #93b1d6;
+}
+
+.color-swatch.athletic_yellow
+{
+  background-color: #dec604;
+}
 
 .color-swatch.mauvelous{
   background-color: #c67977!important;

@@ -12,16 +12,16 @@ function MaleSweatShirt() {
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
+        additional: { src: null, x: 50, y: 50, scale: 1 },
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/messi-back.jpeg' },
-        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', back: '/assets/white_back_hoodie.jpg' },
-        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/cr7-back.jpeg' },
-        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', back: '/assets/black_back_hoodie.jpg' },
-        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', back: '/assets/blue_back_hoodie.jpg' },
-        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', back: '/assets/hihi.jpeg' },
-
+        { id: 1, front: '/assets/white_front_sweatshirt.jpg' , side: '/assets/white_side_sweatshirt.jpg', additional:'/assets/white_additional_sweatshirt.jpg', back: '/assets/looney.jpeg' },
+        { id: 2, front: '/assets/destiny.jpeg', side: '/assets/black_side_sweatshirt.jpg', additional:'/assets/black_additional_sweatshirt.jpg', back: '/assets/black_back_sweatshirt.jpg' },
+        { id: 3, front: '/assets/heather_true_royal_front_sweatshirt.jpg', side: '/assets/heather_true_royal_additional_sweatshirt.jpg', additional:'/assets/heather_true_royal_side_sweatshirt.jpg', back: '/assets/smokey.jpeg' },
+        { id: 4, front: '/assets/eat.jpeg', side: '/assets/black_side_sweatshirt.jpg', additional:'/assets/black_additional_sweatshirt.jpg', back: '/assets/black_back_sweatshirt.jpg' },
     ]);
+
+
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -38,10 +38,11 @@ function MaleSweatShirt() {
         setSideMenuOpen(false);
     };
 
-    const hoodieRefs = {
+  const hoodieRefs = {
         front: useRef(),
         side: useRef(),
         back: useRef(),
+        additional: useRef(),
     };
 
     const [selectedView, setSelectedView] = useState('front');
@@ -117,6 +118,7 @@ function MaleSweatShirt() {
         return {
             front: `${base}${formattedColor}_front_sweatshirt.jpg`,
             side: `${base}${formattedColor}_side_sweatshirt.jpg`,
+            additional: `${base}${formattedColor}_additional_sweatshirt.jpg`, // Add this line
             back: `${base}${formattedColor}_back_sweatshirt.jpg`,
         };
     }
@@ -147,7 +149,7 @@ function MaleSweatShirt() {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back'];
+        const imageTypes = ['front', 'side', 'back', 'additional']; 
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -261,7 +263,8 @@ function MaleSweatShirt() {
                                     <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
                                     <div className="fullscreen-controls">
                                         <button onClick={() => handleViewChange('front')}>Front</button>
-                                        <button onClick={() => handleViewChange('side')}>Side</button>
+                                        <button onClick={() => handleViewChange('side')}>Right Side</button>
+                                        <button onClick={() => handleViewChange('additional')}>Left Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
                                         <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
