@@ -12,12 +12,14 @@ const MaleTank = () => {
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
+        additional: { src: null, x: 50, y: 50, scale: 1 },
+
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/custom-hoodie-front (3).jpeg', side: '/assets/white_side_tank.jpg', back: '/assets/white_back_tank.jpg' },
-        { id: 2, front: '/assets/custom-hoodie-front (2).jpeg', side: '/assets/black_side_tank.jpg', back: '/assets/black_back_tank.jpg' },
-        { id: 3, front: '/assets/black_front_tank.jpg', side: '/assets/black_side_tank.jpg', back: '/assets/goku.jpeg' },
-        { id: 4, front: '/assets/super.jpeg', side: '/assets/true_navy_side_tank.jpg', back: '/assets/true_navy_back_tank.jpg' },
+        { id: 1, front: '/assets/custom-hoodie-front (3).jpeg', side: '/assets/white_side_tank.jpg', additional: '/assets/white_additional_tank.jpg', back: '/assets/white_back_tank.jpg' },
+        { id: 2, front: '/assets/custom-hoodie-front (2).jpeg', side: '/assets/black_side_tank.jpg', additional: '/assets/black_additional_tank.jpg', back: '/assets/black_back_tank.jpg' },
+        { id: 3, front: '/assets/black_front_tank.jpg', side: '/assets/black_side_tank.jpg', additional: '/assets/black_additional_tank.jpg', back: '/assets/goku.jpeg' },
+        { id: 4, front: '/assets/super.jpeg', side: '/assets/true_navy_side_tank.jpg', additional: '/assets/true_navy_additional_tank.jpg', back: '/assets/true_navy_back_tank.jpg' },
 
         // Add other examples as necessary
     ]);
@@ -25,18 +27,13 @@ const MaleTank = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
 
-    const openFullscreen = (image, type) => {
-        setSelectedImage({ src: image, type });
-        setIsFullscreen(true);
-    };
+
     // Function to close the full-screen overlay
     const closeFullscreen = () => {
         setIsFullscreen(false);
     };
 
-    const toggleSideMenu = () => {
-        setSideMenuOpen(!sideMenuOpen);
-    };
+
 
     const closeSideMenu = () => {
         setSideMenuOpen(false);
@@ -48,6 +45,8 @@ const MaleTank = () => {
         front: useRef(),
         side: useRef(),
         back: useRef(),
+        additional: useRef(),
+
     };
     const [selectedView, setSelectedView] = useState('front');
     const [selectedColor, setSelectedColor] = useState('white');
@@ -121,6 +120,7 @@ const MaleTank = () => {
         return {
             front: `${base}${formattedColor}_front_tank.jpg`,
             side: `${base}${formattedColor}_side_tank.jpg`,
+            additional: `${base}${formattedColor}_additional_tank.jpg`, // Add this line
             back: `${base}${formattedColor}_back_tank.jpg`,
         };
     }
@@ -151,7 +151,7 @@ const MaleTank = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back'];
+        const imageTypes = ['front', 'side', 'back', 'additional']; 
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -241,7 +241,7 @@ const MaleTank = () => {
                 className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>        </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
 
-                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" alt='lamp' className="idea" /></button>
                 <div className="content-container">
                     <div>
                         <div ref={sideMenuRef} className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
@@ -264,7 +264,8 @@ const MaleTank = () => {
                                     <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
                                     <div className="fullscreen-controls">
                                         <button onClick={() => handleViewChange('front')}>Front</button>
-                                        <button onClick={() => handleViewChange('side')}>Side</button>
+                                        <button onClick={() => handleViewChange('side')}>Right Side</button>
+                                        <button onClick={() => handleViewChange('additional')}>Left Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
                                         <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>

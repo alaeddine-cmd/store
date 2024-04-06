@@ -12,12 +12,14 @@ const FemaleOverShirt = () => {
         front: { src: null, x: 50, y: 50, scale: 1 },
         side: { src: null, x: 50, y: 50, scale: 1 },
         back: { src: null, x: 50, y: 50, scale: 1 },
+        additional: { src: null, x: 50, y: 50, scale: 1 },
+
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/cofee.jpeg', side: '/assets/white_side_over_shirt_fem.jpg', back: '/assets/white_back_over_shirt_fem.jpg' },
-        { id: 2, front: '/assets/teddy.jpeg', side: '/assets/black_side_over_shirt_fem.jpg', back: '/assets/black_back_over_shirt_fem.jpg' },
-        { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
-        { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
+        { id: 1, front: '/assets/cofee.jpeg', side: '/assets/white_side_over_shirt_fem.jpg', additional: '/assets/white_additional_over_shirt_fem.jpg', back: '/assets/white_back_over_shirt_fem.jpg' },
+        { id: 2, front: '/assets/teddy.jpeg', side: '/assets/black_side_over_shirt_fem.jpg', additional: '/assets/black_additional_over_shirt_fem.jpg', back: '/assets/black_back_over_shirt_fem.jpg' },
+        { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', additional: '/assets/white_side_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
+        { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', additional: '/assets/sport_grey_side_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
 
         // Add other examples as necessary
     ]);
@@ -25,18 +27,11 @@ const FemaleOverShirt = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
 
-    const openFullscreen = (image, type) => {
-        setSelectedImage({ src: image, type });
-        setIsFullscreen(true);
-    };
     // Function to close the full-screen overlay
     const closeFullscreen = () => {
         setIsFullscreen(false);
     };
 
-    const toggleSideMenu = () => {
-        setSideMenuOpen(!sideMenuOpen);
-    };
 
     const closeSideMenu = () => {
         setSideMenuOpen(false);
@@ -48,6 +43,8 @@ const FemaleOverShirt = () => {
         front: useRef(),
         side: useRef(),
         back: useRef(),
+        additional: useRef(),
+
     };
     const [selectedView, setSelectedView] = useState('front');
     const [selectedColor, setSelectedColor] = useState('white');
@@ -121,6 +118,7 @@ const FemaleOverShirt = () => {
         return {
             front: `${base}${formattedColor}_front_over_shirt_fem.jpg`,
             side: `${base}${formattedColor}_side_over_shirt_fem.jpg`,
+            additional: `${base}${formattedColor}_additional_over_shirt_fem.jpg`, // Add this line
             back: `${base}${formattedColor}_back_over_shirt_fem.jpg`,
         };
     }
@@ -151,7 +149,7 @@ const FemaleOverShirt = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back'];
+        const imageTypes = ['front', 'side', 'back', 'additional']; 
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -241,7 +239,7 @@ const FemaleOverShirt = () => {
                 className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>        </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
 
-                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" /></button>
+                <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" alt="lamp" className="idea" /></button>
                 <div className="content-container">
                     <div>
                         <div ref={sideMenuRef} className={`side-menu ${sideMenuOpen ? 'open' : ''}`}>
@@ -264,7 +262,8 @@ const FemaleOverShirt = () => {
                                     <img src={selectedImage.src} alt={`${selectedImage.type} view`} />
                                     <div className="fullscreen-controls">
                                         <button onClick={() => handleViewChange('front')}>Front</button>
-                                        <button onClick={() => handleViewChange('side')}>Side</button>
+                                        <button onClick={() => handleViewChange('side')}>Right Side</button>
+                                        <button onClick={() => handleViewChange('additional')}>Left Side</button>
                                         <button onClick={() => handleViewChange('back')}>Back</button>
                                         <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
