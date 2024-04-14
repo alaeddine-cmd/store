@@ -75,7 +75,7 @@ function Navigation() {
             <div className="image-overlay">Women's Shirts</div>
             <img src="/assets/woman-t-shirt.png" alt="Female Shirt" />
           </Link>
-          {/*           <Link to="/male-sweatshirt" className="category-box">
+{/*           <Link to="/male-sweatshirt" className="category-box">
             <div className="image-overlay">Men's Sweatshirts</div>
             <img src="/assets/male-sweatshirt.png" alt="male sweatshirt" />
           </Link>

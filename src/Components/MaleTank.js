@@ -18,7 +18,6 @@ const MaleTank = () => {
     const [examples] = useState([
         { id: 1, front: '/assets/custom-hoodie-front (3).jpeg', side: '/assets/white_side_tank.jpg', additional: '/assets/white_additional_tank.jpg', back: '/assets/white_back_tank.jpg' },
         { id: 2, front: '/assets/custom-hoodie-front (2).jpeg', side: '/assets/black_side_tank.jpg', additional: '/assets/black_additional_tank.jpg', back: '/assets/black_back_tank.jpg' },
-        { id: 3, front: '/assets/black_front_tank.jpg', side: '/assets/black_side_tank.jpg', additional: '/assets/black_additional_tank.jpg', back: '/assets/goku.jpeg' },
         { id: 4, front: '/assets/super.jpeg', side: '/assets/true_navy_side_tank.jpg', additional: '/assets/true_navy_additional_tank.jpg', back: '/assets/true_navy_back_tank.jpg' },
 
         // Add other examples as necessary
