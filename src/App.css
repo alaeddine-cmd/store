@@ -276,3 +276,7 @@ a:hover {
     height: 30px;
   }
 }
+
+.footer-text {
+  color: #666666; /* Greish color */
+}

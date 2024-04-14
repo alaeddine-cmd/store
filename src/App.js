@@ -32,6 +32,9 @@ function App() {
         <Route path="/oversize-t-shirt-women" element={<FemaleOverShirt />} />
 
       </Routes>
+      <footer className="App-footer">
+        <p className="footer-text">&copy; 2024 Stitch Switch. All Rights Reserved.</p>
+      </footer>
     </div>
   );
 }
@@ -72,7 +75,7 @@ function Navigation() {
             <div className="image-overlay">Women's Shirts</div>
             <img src="/assets/woman-t-shirt.png" alt="Female Shirt" />
           </Link>
-{/*           <Link to="/male-sweatshirt" className="category-box">
+          {/*           <Link to="/male-sweatshirt" className="category-box">
             <div className="image-overlay">Men's Sweatshirts</div>
             <img src="/assets/male-sweatshirt.png" alt="male sweatshirt" />
           </Link>
