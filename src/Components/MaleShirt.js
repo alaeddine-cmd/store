@@ -20,6 +20,7 @@ const MaleShirt = () => {
         { id: 2, front: '/assets/dodo.jpeg', side: '/assets/NAVY_side_shirt.jpg', additional:'/assets/NAVY_additional_shirt.jpg', back: '/assets/NAVY_back_shirt.jpg' },
         { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', additional:'/assets/white_additional_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
         { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', additional:'/assets/sport_grey_additional_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
+        { id: 5, front: '/assets/304567892.jpeg', side: '/assets/black_side_shirt.jpg',  additional:'/assets/black_additional_shirt.jpg', back: '/assets/black_back_shirt.jpg' },
 
         // Add other examples as necessary
     ]);
