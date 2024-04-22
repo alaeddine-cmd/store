@@ -17,11 +17,10 @@ const Navbar = () => {
         // Clear username from localStorage
         localStorage.removeItem('username_stitch');
         navigate('/shop');
-
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 sticky-top">
             <div className="container">
                 <img src={logo} style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }} alt="Logo" />
                 <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/"> Stitch Switch</NavLink>
@@ -47,10 +46,10 @@ const Navbar = () => {
                     <div className="buttons text-center">
                         {username ? null : (
                             <>
-                                <NavLink to="/login" className="btn btn-outline-dark m-2">
+                                <NavLink to="/login" className="btn btn-outline-light m-2">
                                     <i className="fa fa-sign-in-alt mr-1"></i> Login
                                 </NavLink>
-                                <NavLink to="/register" className="btn btn-outline-dark m-2">
+                                <NavLink to="/register" className="btn btn-outline-light m-2">
                                     <i className="fa fa-user-plus mr-1"></i> Register
                                 </NavLink>
                             </>
@@ -60,11 +59,11 @@ const Navbar = () => {
                             <div className="avatar-circle" style={{ marginRight: "10px" }}>{firstLetter}</div>
                         )}
                         {username && (
-                            <NavLink to="/shop" className="btn btn-outline-danger m-2" onClick={handleLogout}>
+                            <NavLink to="/shop" className="btn btn-outline-light m-2" onClick={handleLogout}>
                                 <i className="fa fa-sign-out-alt mr-1"></i> Logout
                             </NavLink>
                         )}
-                        <NavLink to="/cart" className="btn btn-outline-dark m-2">
+                        <NavLink to="/cart" className="btn btn-outline-light m-2">
                             <i className="fa fa-cart-shopping mr-1"></i> Cart ({state.length})
                         </NavLink>
                     </div>
