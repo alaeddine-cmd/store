@@ -1,19 +1,29 @@
-.MuiTypography-root.MuiTypography-body2.MuiTypography-alignCenter {
-    margin-top: 200px !important;
-}
-
-.MuiAvatar-root {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.jss2 {
-    margin: 8px;
-    background-color: white !important;
-}
-
-.makeStyles-avatar-2 {
-    margin: 8px;
-    background-color: white !important;
-}
+.container {
+    margin-top: 64px; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .paper {
+    text-align: center;
+  }
+  
+  .avatar {
+    margin-bottom: 16px; /* Adjust as needed */
+  }
+  
+  .avatar img {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 8px; /* Adjust as needed */
+  }
+  
+  .body-text {
+    font-size: 16px;
+  }
+  

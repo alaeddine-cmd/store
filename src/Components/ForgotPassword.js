@@ -1,57 +1,16 @@
 import React, { useState } from 'react';
-import { Email } from '@material-ui/icons';
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  LinearProgress,
-  Typography,
-  Container
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { useNavigate } from 'react-router-dom';
-import { Link } from '@material-ui/core';
-import { IconButton } from '@material-ui/core';
-import './ForgotPassword.css'
+import './ForgotPassword.css'; // Import your custom CSS file
+import { useNavigate } from 'react-router-dom'; // Import useHistory for navigation
 
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-function ForgotPassword(props) {
+function ForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [openV, setOpenV] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [openV, setOpenV] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
   });
 
-  const navigate = useNavigate();
+  const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -81,7 +40,6 @@ function ForgotPassword(props) {
       console.log(error)
     }
     setTimeout(() => setIsLoading(false), 1000); // Stop loading after 3 seconds
-
   };
 
   const handleClose = () => {
@@ -99,100 +57,65 @@ function ForgotPassword(props) {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-        <img src="/assets/logo_2.png" alt="lock icon" style={{ width: '50%', height: '50%' }} />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Forgot Password
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </Grid>
-          </Grid>
-          <Button
+    <div className="container">
+      <div className="paper">
+        <div className="avatar">
+          <img src="/assets/logo_2.png" alt="lock icon" style={{ width: '50%', height: '50%' }} />
+        </div>
+        <h1 className="title">Forgot Password</h1>
+        <form className="form" noValidate onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Email Address"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <button
             type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+            className="btn btn-primary"
             disabled={!formData.email}
           >
             Send Password Reset Email
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="" variant="body2" onClick={() => { navigate('/login') }}>
-                Back to Sign In
-              </Link>
-            </Grid>
-          </Grid>
-          {isLoading && <Box style={{ marginTop: '10px' }} sx={{ width: '100%' }}>
-            <LinearProgress />
-          </Box>}
+          </button>
+          <div className="text-right">
+            <button
+              type="button"
+              className="btn btn-link"
+              onClick={() => history.push('/login')}
+            >
+              Back to Sign In
+            </button>
+          </div>
+          {isLoading && (
+            <div className="loading-bar">
+              <div className="progress" />
+            </div>
+          )}
         </form>
       </div>
-      <Box mt={5} />
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="draggable-dialog-title"
-        maxWidth="xs"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Email not found
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please check again your email.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} style={{ backgroundColor: '#3f51b5', opacity: 1, height: 40 }}
-            color="primary">
-            <p style={{ color: 'white' }}>ok</p>
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={openV}
-        onClose={handleCloseV}
-        aria-labelledby="draggable-dialog-title"
-        maxWidth="xs"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          <IconButton style={{ fontSize: 24, marginRight: '5px' }}><Email /></IconButton>
-
-          Mail Sent
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Password reset instructions sent to your email address.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseV} style={{ backgroundColor: '#3f51b5', opacity: 1, height: 40 }}
-            color="primary">
-            <p style={{ color: 'white' }}>ok</p>
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Container>
+      <div className="modal" style={{ display: open ? 'block' : 'none' }}>
+        <div className="modal-content">
+          <span className="close" onClick={handleClose}>&times;</span>
+          <h2>Email not found</h2>
+          <p>Please check again your email.</p>
+          <button className="btn btn-primary" onClick={handleClose}>OK</button>
+        </div>
+      </div>
+      <div className="modal" style={{ display: openV ? 'block' : 'none' }}>
+        <div className="modal-content">
+          <span className="close" onClick={handleCloseV}>&times;</span>
+          <h2><Email /> Mail Sent</h2>
+          <p>Password reset instructions sent to your email address.</p>
+          <button className="btn btn-primary" onClick={handleCloseV}>OK</button>
+        </div>
+      </div>
+    </div>
   );
 }
 

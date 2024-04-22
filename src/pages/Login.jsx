@@ -1,37 +1,22 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Footer, Navbar } from "../components";
-import {
-  Button,
-  LinearProgress,
-  TextField,
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Footer, Navbar } from '../components';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [pwd, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [pwd, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [openUserNotFound, setOpenUserNotFound] = React.useState(false);
-  const [openIncorrectPassword, setOpenIncorrectPassword] = React.useState(false);
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [openUserNotFound, setOpenUserNotFound] = useState(false);
+  const [openIncorrectPassword, setOpenIncorrectPassword] = useState(false);
+  const history = useNavigate();
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
     try {
-      console.log("Submitting form with email:", email);
-      console.log("Submitting form with password:", pwd);
-
       const response = await fetch('http://localhost:8080/api/login', {
         method: 'POST',
         headers: {
@@ -47,35 +32,32 @@ const Login = () => {
 
       const data = await response.json();
 
-      console.log("Login response data:", data);
-
       if (data.message === 'Logged in successfully') {
         localStorage.setItem('username_stitch', data.name);
         localStorage.setItem('userData', JSON.stringify(data));
-        navigate('/shop');
+        history.push('/shop');
       } else if (data.message === 'Email not verified') {
-        setOpen(true); // show the dialog
+        setOpen(true);
       } else if (data.message === 'User not found') {
-        setOpenUserNotFound(true); // show the dialog
+        setOpenUserNotFound(true);
       } else if (data.message === 'Incorrect password') {
-        setOpenIncorrectPassword(true); // show the dialog
+        setOpenIncorrectPassword(true);
       } else {
-        setError("An error occurred. Please try again later.");
+        setError('An error occurred. Please try again later.');
       }
     } catch (error) {
       console.error(error);
-      setError(error.message || "An error occurred. Please try again later.");
+      setError(error.message || 'An error occurred. Please try again later.');
     }
 
     setIsLoading(false);
   };
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "email") {
+    if (name === 'email') {
       setEmail(value);
-    } else if (name === "password") {
+    } else if (name === 'password') {
       setPassword(value);
     }
   };
@@ -100,24 +82,22 @@ const Login = () => {
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="my-3">
-                <TextField
+                <input
                   type="email"
                   name="email"
-                  label="Email address"
-                  variant="outlined"
-                  fullWidth
+                  placeholder="Email address"
+                  className="form-control"
                   value={email}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="my-3">
-                <TextField
+                <input
                   type="password"
                   name="password"
-                  label="Password"
-                  variant="outlined"
-                  fullWidth
+                  placeholder="Password"
+                  className="form-control"
                   value={pwd}
                   onChange={handleChange}
                   required
@@ -126,92 +106,56 @@ const Login = () => {
               {error && <div className="alert alert-danger">{error}</div>}
               <div className="my-3">
                 <p>
-                  New Here?{" "}
+                  New Here?{' '}
                   <Link to="/register" className="text-decoration-underline text-info">
                     Register
-                  </Link>{" "}
+                  </Link>{' '}
                 </p>
-                {isLoading && <Box style={{ marginTop: '10px' }}>
-                  <LinearProgress />
-                </Box>}
+                {isLoading && <progress style={{ width: '100%' }} />}
               </div>
               <div className="text-center">
-                <Button
-                  variant="contained"
-                  color="primary"
+                <button
                   type="submit"
+                  className="btn btn-primary"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Logging in..." : "Login"}
-                </Button>
+                  {isLoading ? 'Logging in...' : 'Login'}
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
       <Footer />
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="draggable-dialog-title"
-        maxWidth="xs"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Email not verified
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please check your email to verify your account.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {open && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Email not verified</h2>
+            <p>Please check your email to verify your account.</p>
+            <button onClick={handleClose} className="btn btn-primary">Ok</button>
+          </div>
+        </div>
+      )}
 
-      <Dialog
-        open={openUserNotFound}
-        onClose={handleCloseUserNotFound}
-        aria-labelledby="draggable-dialog-title"
-        maxWidth="xs"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          User not found
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please check again while typing your email account
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseUserNotFound} color="primary">
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {openUserNotFound && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>User not found</h2>
+            <p>Please check again while typing your email account</p>
+            <button onClick={handleCloseUserNotFound} className="btn btn-primary">Ok</button>
+          </div>
+        </div>
+      )}
 
-      <Dialog
-        open={openIncorrectPassword}
-        onClose={handleCloseIncorrectPassword}
-        aria-labelledby="draggable-dialog-title"
-        maxWidth="xs"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Incorrect password
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please check again while typing your password
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseIncorrectPassword} color="primary">
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {openIncorrectPassword && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Incorrect password</h2>
+            <p>Please check again while typing your password</p>
+            <button onClick={handleCloseIncorrectPassword} className="btn btn-primary">Ok</button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
