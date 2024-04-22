@@ -8,6 +8,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import backgroundImage from "./wall.jpg";
+import mob from './mob.png';
 
 const FemaleSweatShirt = () => {
     const [designs, setDesigns] = useState({
@@ -18,9 +19,8 @@ const FemaleSweatShirt = () => {
 
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/charcoal_front_sweatshirt_fem.jpg', side: '/assets/charcoal_side_sweatshirt_fem.jpg', additional: '/assets/charcoal_additional_sweatshirt_fem.jpg', back: '/assets/charcoal_back_sweatshirt_fem.jpg' },
-        { id: 2, front: '/assets/jet_black_front_sweatshirt_fem.jpg', side: '/assets/jet_black_side_sweatshirt_fem.jpg', additional: '/assets/jet_black_additional_sweatshirt_fem.jpg', back: '/assets/jet_black_back_sweatshirt_fem.jpg' },
-        { id: 3, front: '/assets/he_loganberry_front_sweatshirt_fem.jpg', side: '/assets/he_loganberry_side_sweatshirt_fem.jpg', additional: '/assets/he_loganberry_additional_sweatshirt_fem.jpg', back: '/assets/he_loganberry_back_sweatshirt_fem.jpg' },
+        { id: 1, front: '/assets/katty.jpeg', side: '/assets/charcoal_side_sweatshirt_fem.jpg', additional: '/assets/charcoal_additional_sweatshirt_fem.jpg', back: '/assets/charcoal_back_sweatshirt_fem.jpg' },
+        { id: 2, front: '/assets/faces.jpeg', side: '/assets/jet_black_side_sweatshirt_fem.jpg', additional: '/assets/jet_black_additional_sweatshirt_fem.jpg', back: '/assets/jet_black_back_sweatshirt_fem.jpg' },
     ]);
 
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
@@ -149,7 +149,7 @@ const FemaleSweatShirt = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back', 'additional']; 
+        const imageTypes = ['front', 'side', 'back', 'additional'];
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -232,6 +232,18 @@ const FemaleSweatShirt = () => {
         };
     }, [sideMenuRef]); // Ensure the effect runs only once
 
+
+    const [showModal, setShowModal] = useState(true);
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains("modal-overlay")) {
+            closeModal();
+        }
+    };
     return (
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
@@ -340,6 +352,27 @@ const FemaleSweatShirt = () => {
                     </div>
                 </div>
             </div >
+            {showModal && (
+                <div className="modal-overlay" style={{ zIndex: 9999 }} onClick={handleOverlayClick}>
+                    <div className="modal-content">
+                        <div className="store-popup-container">
+                            <p className="store-popup-heading">
+                                Having Trouble Downloading?
+                            </p>
+                            <p className="store-link">
+                                If download fails on mobile, send us a screenshot or switch to a laptop.
+                            </p>
+
+                            <div className="gif-container">
+                                <img src={mob} alt="GIF" className="gif-image" />
+                            </div>
+                            <button className="close-modal-button" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

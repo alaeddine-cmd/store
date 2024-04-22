@@ -1,0 +1,43 @@
+.avatar-circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #2d2d2d;
+    color: white;
+  }
+  
+  .avatar-drawer {
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .avatar-drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .avatar-drawer li {
+    margin-bottom: 10px;
+  }
+  
+  .avatar-drawer a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .avatar-drawer a:hover {
+    background-color: #f5f5f5;
+  }
+  

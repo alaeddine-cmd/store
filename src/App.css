@@ -17,6 +17,84 @@
 
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 80%; /* Adjust width percentage as needed */
+  max-width: 500px; /* Set maximum width if desired */
+  max-height: 80%; /* Adjust height percentage as needed */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+}
+
+/* Adjust modal size for smaller screens */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Adjust width percentage for smaller screens */
+    max-width: none; /* Remove maximum width */
+    max-height: none; /* Remove maximum height */
+  }
+}
+
+
+.store-popup-container {
+  text-align: center;
+}
+
+.store-popup-heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+.store-icon {
+  margin-top: 10px;
+  font-size: 24px;
+  margin-left: 15px;
+}
+.close-modal-button {
+  margin-top: 20px;
+}
+
+.close-modal-button {
+  display: inline-block;
+  background-color: #8552f5;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal-button:hover {
+  background-color: #8f64eb;
+}
+
+.close-modal-button span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.close-modal-button:hover span {
+  transform: scale(1.1);
+}
+
+.gif-image {
+  max-width: 100%;
+  max-height: 100px;
+}
 
 .App-header img {
   max-width: 80%; /* Adjusted for better responsiveness */
@@ -247,7 +325,7 @@ a:hover {
 }
 
 .social-icon img {
-  width: 50px; /* Set a specific width */
+  width: 40px; /* Set a specific width */
   height: 40px; /* Set a specific height */
   border-radius: 50%; /* Make the images round */
   transition: transform 0.3s ease-in-out;

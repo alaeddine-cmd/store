@@ -6,6 +6,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import backgroundImage from "./wall.jpg";
+import mob from './mob.png';
 
 const FemaleShirt = () => {
     const [designs, setDesigns] = useState({
@@ -55,7 +56,7 @@ const FemaleShirt = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back', 'additional']; 
+        const imageTypes = ['front', 'side', 'back', 'additional'];
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -237,6 +238,18 @@ const FemaleShirt = () => {
     }, [sideMenuRef]); // Ensure the effect runs only once
 
 
+    const [showModal, setShowModal] = useState(true);
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains("modal-overlay")) {
+            closeModal();
+        }
+    };
+
     return (
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
@@ -267,7 +280,7 @@ const FemaleShirt = () => {
                                         <button onClick={() => handleViewChange('front')}>Front</button>
                                         <button onClick={() => handleViewChange('side')}>Right Side</button>
                                         <button onClick={() => handleViewChange('additional')}>Left Side</button>
-                                         <button onClick={() => handleViewChange('back')}>Back</button>
+                                        <button onClick={() => handleViewChange('back')}>Back</button>
                                         <button className="button-download" onClick={handleDownloadAllSides}>Download</button>
                                     </div>
                                 </div>
@@ -343,6 +356,27 @@ const FemaleShirt = () => {
                     </div>
                 </div>
             </div >
+            {showModal && (
+                <div className="modal-overlay" style={{ zIndex: 9999 }} onClick={handleOverlayClick}>
+                    <div className="modal-content">
+                        <div className="store-popup-container">
+                            <p className="store-popup-heading">
+                                Having Trouble Downloading?
+                            </p>
+                            <p className="store-link">
+                                If download fails on mobile, send us a screenshot or switch to a laptop.
+                            </p>
+
+                            <div className="gif-container">
+                                <img src={mob} alt="GIF" className="gif-image" />
+                            </div>
+                            <button className="close-modal-button" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

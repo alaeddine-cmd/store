@@ -6,6 +6,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import backgroundImage from "./wall.jpg";
+import mob from './mob.png';
 
 const FemaleOverShirt = () => {
     const [designs, setDesigns] = useState({
@@ -18,9 +19,6 @@ const FemaleOverShirt = () => {
     const [examples] = useState([
         { id: 1, front: '/assets/cofee.jpeg', side: '/assets/white_side_over_shirt_fem.jpg', additional: '/assets/white_additional_over_shirt_fem.jpg', back: '/assets/white_back_over_shirt_fem.jpg' },
         { id: 2, front: '/assets/teddy.jpeg', side: '/assets/black_side_over_shirt_fem.jpg', additional: '/assets/black_additional_over_shirt_fem.jpg', back: '/assets/black_back_over_shirt_fem.jpg' },
-        { id: 3, front: '/assets/peaky.jpeg', side: '/assets/white_side_shirt.jpg', additional: '/assets/white_side_shirt.jpg', back: '/assets/white_back_shirt.jpg' },
-        { id: 4, front: '/assets/super-mario.jpeg', side: '/assets/sport_grey_side_shirt.jpg', additional: '/assets/sport_grey_side_shirt.jpg', back: '/assets/sport_grey_back_shirt.jpg' },
-
         // Add other examples as necessary
     ]);
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
@@ -149,7 +147,7 @@ const FemaleOverShirt = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back', 'additional']; 
+        const imageTypes = ['front', 'side', 'back', 'additional'];
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -232,6 +230,18 @@ const FemaleOverShirt = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [sideMenuRef]); // Ensure the effect runs only once
+
+    const [showModal, setShowModal] = useState(true);
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains("modal-overlay")) {
+            closeModal();
+        }
+    };
 
     return (
         <> <header className="App-header">
@@ -341,6 +351,27 @@ const FemaleOverShirt = () => {
                     </div>
                 </div>
             </div >
+            {showModal && (
+                <div className="modal-overlay" style={{ zIndex: 9999 }} onClick={handleOverlayClick}>
+                    <div className="modal-content">
+                        <div className="store-popup-container">
+                            <p className="store-popup-heading">
+                                Having Trouble Downloading?
+                            </p>
+                            <p className="store-link">
+                                If download fails on mobile, send us a screenshot or switch to a laptop.
+                            </p>
+
+                            <div className="gif-container">
+                                <img src={mob} alt="GIF" className="gif-image" />
+                            </div>
+                            <button className="close-modal-button" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

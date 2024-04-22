@@ -6,6 +6,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import backgroundImage from "./wall.jpg";
+import mob from './mob.png';
 
 const FemaleHoodie = () => {
     const [designs, setDesigns] = useState({
@@ -16,10 +17,10 @@ const FemaleHoodie = () => {
 
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/friends.jpeg', side: '/assets/mauve_side_hoodie_fem.jpg', additional:'/assets/mauve_additional_hoodie_fem.jpg', back: '/assets/mauve_back_hoodie_fem.jpg' },
-        { id: 2, front: '/assets/black_fem.jpeg', side: '/assets/black_side_hoodie_fem.jpg', additional:'/assets/black_additional_hoodie_fem.jpg', back: '/assets/black_back_hoodie_fem.jpg' },
-        { id: 3, front: '/assets/stitch.jpeg', side: '/assets/pink_side_hoodie_fem.jpg', additional:'/assets/pink_additional_hoodie_fem.jpg', back: '/assets/pink_back_hoodie_fem.jpg' },
-        { id: 4, front: '/assets/bears.jpeg', side: '/assets/white_side_hoodie_fem.jpg', additional:'/assets/white_additional_hoodie_fem.jpg', back: '/assets/white_back_hoodie_fem.jpg' },
+        { id: 1, front: '/assets/friends.jpeg', side: '/assets/mauve_side_hoodie_fem.jpg', additional: '/assets/mauve_additional_hoodie_fem.jpg', back: '/assets/mauve_back_hoodie_fem.jpg' },
+        { id: 2, front: '/assets/black_fem.jpeg', side: '/assets/black_side_hoodie_fem.jpg', additional: '/assets/black_additional_hoodie_fem.jpg', back: '/assets/black_back_hoodie_fem.jpg' },
+        { id: 3, front: '/assets/stitch.jpeg', side: '/assets/pink_side_hoodie_fem.jpg', additional: '/assets/pink_additional_hoodie_fem.jpg', back: '/assets/pink_back_hoodie_fem.jpg' },
+        { id: 4, front: '/assets/bears.jpeg', side: '/assets/white_side_hoodie_fem.jpg', additional: '/assets/white_additional_hoodie_fem.jpg', back: '/assets/white_back_hoodie_fem.jpg' },
 
     ]);
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
@@ -149,7 +150,7 @@ const FemaleHoodie = () => {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back', 'additional']; 
+        const imageTypes = ['front', 'side', 'back', 'additional'];
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -218,7 +219,7 @@ const FemaleHoodie = () => {
     useEffect(() => {
         // Function to handle click event
         function handleClickOutside(event) {
-            if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
+            if (sideMenuRef.current && !sideMenuRef.current.contains(event.target) && !event.target.classList.contains("modal-overlay")) {
                 closeSideMenu();
             }
         }
@@ -231,6 +232,18 @@ const FemaleHoodie = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [sideMenuRef]); // Ensure the effect runs only once
+
+    const [showModal, setShowModal] = useState(true);
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains("modal-overlay")) {
+            closeModal();
+        }
+    };
 
     return (
         <> <header className="App-header">
@@ -340,6 +353,27 @@ const FemaleHoodie = () => {
                     </div>
                 </div>
             </div >
+            {showModal && (
+                <div className="modal-overlay" style={{ zIndex: 9999 }} onClick={handleOverlayClick}>
+                    <div className="modal-content">
+                        <div className="store-popup-container">
+                            <p className="store-popup-heading">
+                                Having Trouble Downloading?
+                            </p>
+                            <p className="store-link">
+                                If download fails on mobile, send us a screenshot or switch to a laptop.
+                            </p>
+
+                            <div className="gif-container">
+                                <img src={mob} alt="GIF" className="gif-image" />
+                            </div>
+                            <button className="close-modal-button" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

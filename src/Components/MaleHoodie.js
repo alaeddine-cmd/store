@@ -6,6 +6,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import backgroundImage from "./wall.jpg";
+import mob from './mob.png';
 
 function MaleHoodie() {
     const [designs, setDesigns] = useState({
@@ -15,12 +16,12 @@ function MaleHoodie() {
         additional: { src: null, x: 50, y: 50, scale: 1 },
     });
     const [examples] = useState([
-        { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg', back: '/assets/messi-back.jpeg' },
-        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', additional:'/assets/white_hoodie_additional.jpg',back: '/assets/white_back_hoodie.jpg' },
-        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg',back: '/assets/cr7-back.jpeg' },
-        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', additional:'/assets/black_hoodie_additional.jpg',back: '/assets/black_back_hoodie.jpg' },
-        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', additional:'/assets/blue_hoodie_additional.jpg',back: '/assets/blue_back_hoodie.jpg' },
-        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', additional:'/assets/sport_grey_hoodie_additional.jpg',back: '/assets/hihi.jpeg' },
+        { id: 1, front: '/assets/messi-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional: '/assets/black_hoodie_additional.jpg', back: '/assets/messi-back.jpeg' },
+        { id: 2, front: '/assets/simpson.jpeg', side: '/assets/white_side_hoodie.jpg', additional: '/assets/white_hoodie_additional.jpg', back: '/assets/white_back_hoodie.jpg' },
+        { id: 3, front: '/assets/cr7-front.jpeg', side: '/assets/black_side_hoodie.jpg', additional: '/assets/black_hoodie_additional.jpg', back: '/assets/cr7-back.jpeg' },
+        { id: 4, front: '/assets/hunter.jpeg', side: '/assets/black_side_hoodie.jpg', additional: '/assets/black_hoodie_additional.jpg', back: '/assets/black_back_hoodie.jpg' },
+        { id: 5, front: '/assets/cc.jpeg', side: '/assets/blue_side_hoodie.jpg', additional: '/assets/blue_hoodie_additional.jpg', back: '/assets/blue_back_hoodie.jpg' },
+        { id: 6, front: '/assets/ihih.jpeg', side: '/assets/sport_grey_side_hoodie.jpg', additional: '/assets/sport_grey_hoodie_additional.jpg', back: '/assets/hihi.jpeg' },
 
     ]);
     const [selectedImage, setSelectedImage] = useState({ src: null, type: null });
@@ -152,7 +153,7 @@ function MaleHoodie() {
         };
 
         // Add images to zip
-        const imageTypes = ['front', 'side', 'back', 'additional']; 
+        const imageTypes = ['front', 'side', 'back', 'additional'];
         for (const type of imageTypes) {
             const imageUrl = example[type];
             if (!imageUrl) continue;
@@ -236,7 +237,17 @@ function MaleHoodie() {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [sideMenuRef]); // Ensure the effect runs only once
+    const [showModal, setShowModal] = useState(true);
 
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains("modal-overlay")) {
+            closeModal();
+        }
+    };
     return (
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
@@ -343,6 +354,27 @@ function MaleHoodie() {
                     </div>
                 </div>
             </div >
+            {showModal && (
+                <div className="modal-overlay" style={{ zIndex: 9999 }} onClick={handleOverlayClick}>
+                    <div className="modal-content">
+                        <div className="store-popup-container">
+                            <p className="store-popup-heading">
+                                Having Trouble Downloading?
+                            </p>
+                            <p className="store-link">
+                                If download fails on mobile, send us a screenshot or switch to a laptop.
+                            </p>
+
+                            <div className="gif-container">
+                                <img src={mob} alt="GIF" className="gif-image" />
+                            </div>
+                            <button className="close-modal-button" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
