@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Footer, Navbar } from '../Components';
 import { Link, useNavigate } from 'react-router-dom';
+import { TextField, Button, Typography, Container, Grid } from '@mui/material'; // Import Material-UI components
+import { Footer, Navbar } from '../Components';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -57,70 +58,67 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className={`container my-3 py-3`}>
-        <h1 className="text-center">Register</h1>
-        <hr />
-        <div className="row my-4 h-100">
-          <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
-            <form onSubmit={handleSubmit}>
-              <div className="form my-3">
-                <label htmlFor="Name">Full Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="Name"
-                  placeholder="Enter Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form my-3">
-                <label htmlFor="Email">Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="Email"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form my-3">
-                <label htmlFor="Password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="Password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {error && <div className="alert alert-danger">{error}</div>}
-              {success && <div className="alert alert-success">Registration successful!</div>}
-              <div className="my-3">
-                <p>
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-decoration-underline text-info">
-                    Login
-                  </Link>{' '}
-                </p>
-              </div>
-              <div className="text-center">
-                <button className="my-2 mx-auto btn btn-dark" type="submit">
-                  Register
-                </button>
-              </div>
-              {isLoading && <div style={{ marginTop: '10px' }}>
-                <progress style={{ width: '100%' }} />
-              </div>}
-            </form>
-          </div>
-        </div>
-      </div>
+      <Container component="main" maxWidth="xs">
+        <Typography variant="h4" align="center" gutterBottom>
+          Register
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                label="Full Name"
+                variant="outlined"
+                fullWidth
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Email Address"
+                type="email"
+                variant="outlined"
+                fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Grid>
+          </Grid>
+          {error && <Typography color="error">{error}</Typography>}
+          {success && <Typography color="success">Registration successful!</Typography>}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={isLoading}
+            style={{ marginTop: '20px' }}
+          >
+            {isLoading ? 'Registering...' : 'Register'}
+          </Button>
+        </form>
+        <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+          <Grid item>
+            <Typography variant="body2">
+              Already have an account? <Link to="/login">Login</Link>
+            </Typography>
+          </Grid>
+        </Grid>
+        {isLoading && <progress style={{ width: '100%', marginTop: '20px' }} />}
+      </Container>
       <Footer />
     </>
   );

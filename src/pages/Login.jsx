@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { TextField, Button, Typography, Container, Grid } from '@mui/material'; // Import Material-UI components
 import { Footer, Navbar } from '../Components';
 
 const Login = () => {
@@ -75,84 +76,85 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="container my-3 py-3">
-        <h1 className="text-center">Login</h1>
-        <hr />
-        <div className="row my-4 h-100">
-          <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
-            <form onSubmit={handleSubmit}>
-              <div className="my-3">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  className="form-control"
-                  value={email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="my-3">
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  className="form-control"
-                  value={pwd}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              {error && <div className="alert alert-danger">{error}</div>}
-              <div className="my-3">
-                <p>
-                  New Here?{' '}
-                  <Link to="/register" className="text-decoration-underline text-info">
-                    Register
-                  </Link>{' '}
-                </p>
-                {isLoading && <progress style={{ width: '100%' }} />}
-              </div>
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Logging in...' : 'Login'}
-                </button>
-              </div>
-            </form>
+      <Container component="main" maxWidth="xs">
+        <Typography variant="h4" align="center" gutterBottom>
+          Login
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                label="Email Address"
+                type="email"
+                variant="outlined"
+                fullWidth
+                value={email}
+                onChange={handleChange}
+                name="email"
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={pwd}
+                onChange={handleChange}
+                name="password"
+                required
+              />
+            </Grid>
+          </Grid>
+          {error && <Typography color="error">{error}</Typography>}
+          <div style={{ marginTop: '20px' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              disabled={isLoading}
+            >
+              {isLoading ? 'Logging in...' : 'Login'}
+            </Button>
           </div>
+        </form>
+        <div className="my-3">
+          <Typography>
+            New Here?{' '}
+            <Link to="/register" className="text-decoration-underline text-info">
+              Register
+            </Link>
+          </Typography>
         </div>
-      </div>
+        {isLoading && <progress style={{ width: '100%', marginTop: '20px' }} />}
+      </Container>
       <Footer />
       {open && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Email not verified</h2>
-            <p>Please check your email to verify your account.</p>
-            <button onClick={handleClose} className="btn btn-primary">Ok</button>
+            <Typography variant="h6">Email not verified</Typography>
+            <Typography>Please check your email to verify your account.</Typography>
+            <Button onClick={handleClose} color="primary">Ok</Button>
           </div>
         </div>
       )}
-
       {openUserNotFound && (
         <div className="modal">
           <div className="modal-content">
-            <h2>User not found</h2>
-            <p>Please check again while typing your email account</p>
-            <button onClick={handleCloseUserNotFound} className="btn btn-primary">Ok</button>
+            <Typography variant="h6">User not found</Typography>
+            <Typography>Please check again while typing your email account</Typography>
+            <Button onClick={handleCloseUserNotFound} color="primary">Ok</Button>
           </div>
         </div>
       )}
-
       {openIncorrectPassword && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Incorrect password</h2>
-            <p>Please check again while typing your password</p>
-            <button onClick={handleCloseIncorrectPassword} className="btn btn-primary">Ok</button>
+            <Typography variant="h6">Incorrect password</Typography>
+            <Typography>Please check again while typing your password</Typography>
+            <Button onClick={handleCloseIncorrectPassword} color="primary">Ok</Button>
           </div>
         </div>
       )}
