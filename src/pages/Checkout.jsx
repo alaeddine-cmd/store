@@ -286,7 +286,6 @@ const Checkout = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">Checkout</h1>
         <hr />
         {state.length ? <ShowCheckout /> : <EmptyCart />}
       </div>
