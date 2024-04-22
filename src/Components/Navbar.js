@@ -29,7 +29,7 @@ const Navbar = () => {
             <div className="container">
                 <div className="navbar-brand logo-container">
                     <NavLink to="/">
-                        <img src={logo} style={{ width: "30px", height: "auto", marginRight:"15px" }} className="logo" alt="Logo" />
+                        <img src={logo} style={{ width: "30px", height: "auto", marginRight: "15px" }} className="logo" alt="Logo" />
                         <span className="navbar-brand fw-bold fs-4 px-2">Stitch Switch</span>
                     </NavLink>
                 </div>
@@ -68,20 +68,22 @@ const Navbar = () => {
                                 <NavLink to="/register" className="btn btn-outline-light mx-2" onClick={toggleMenu}>
                                     <i className="fa fa-user-plus mr-1"></i> Register
                                 </NavLink>
-                            </>
-                        )}
 
-                        {username && (
-                            <div className="avatar-circle" style={{ marginRight: "10px" }}>{firstLetter}</div>
+                            </>
+
                         )}
                         {username && (
-                            <NavLink to="/shop" className="btn btn-outline-light mx-2" onClick={handleLogout}>
+                            <div className="avatar-circle" style={{ marginRight: "10px" }}><p className='avatar-text'>{firstLetter}</p></div>
+                        )}
+                        {username && (
+                            <NavLink to="/shop" style={{margin :"0px"}} className="btn btn-outline-light mx-2" onClick={handleLogout}>
                                 <i className="fa fa-sign-out-alt mr-1"></i> Logout
                             </NavLink>
                         )}
-                        <NavLink to="/cart" className="btn btn-outline-light mx-2" onClick={toggleMenu}>
+                        <NavLink to="/cart" style={{margin :"0px"}}  className="btn btn-outline-light mx-2" onClick={toggleMenu}>
                             <i className="fa fa-cart-shopping mr-1"></i> Cart ({state.length})
                         </NavLink>
+
                     </div>
                 </div>
             </div>

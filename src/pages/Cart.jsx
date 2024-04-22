@@ -32,7 +32,7 @@ const Cart = () => {
 
   const ShowCart = () => {
     let subtotal = 0;
-    let shipping = 30.0;
+    let shipping = 8.0;
     let totalItems = 0;
     state.map((item) => {
       return (subtotal += item.price * item.qty);
@@ -61,12 +61,13 @@ const Cart = () => {
                                 className="bg-image rounded"
                                 data-mdb-ripple-color="light"
                               >
+
                                 <img
-                                  src={item.image}
+                                  src={item.images[0].url}
                                   // className="w-100"
                                   alt={item.title}
                                   width={100}
-                                  height={75}
+                                  height={"auto"}
                                 />
                               </div>
                             </div>
@@ -108,7 +109,7 @@ const Cart = () => {
                               <p className="text-start text-md-center">
                                 <strong>
                                   <span className="text-muted">{item.qty}</span>{" "}
-                                  x ${item.price}
+                                  x TND {item.price}
                                 </strong>
                               </p>
                             </div>
@@ -129,18 +130,18 @@ const Cart = () => {
                   <div className="card-body">
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                        Products ({totalItems})<span>${Math.round(subtotal)}</span>
+                        Products ({totalItems})<span>TND {Math.round(subtotal)}</span>
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                         Shipping
-                        <span>${shipping}</span>
+                        <span>TND {shipping}</span>
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
                           <strong>Total amount</strong>
                         </div>
                         <span>
-                          <strong>${Math.round(subtotal + shipping)}</strong>
+                          <strong>TND {Math.round(subtotal + shipping)}</strong>
                         </span>
                       </li>
                     </ul>

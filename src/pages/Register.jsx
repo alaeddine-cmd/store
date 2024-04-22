@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TextField, Button, Typography, Container, Grid } from '@mui/material'; // Import Material-UI components
+import { TextField, Button, Typography, Container, Grid } from '@mui/material';
 import { Footer, Navbar } from '../Components';
-import './Register.css'
+import './Register.css';
+
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const Register = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate(); // Use useNavigate hook to navigate programmatically
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,9 +31,8 @@ const Register = () => {
         setError(null);
 
         setTimeout(() => {
-          history.push('/login');
+          navigate('/login'); // Navigate to the login page after successful registration
         }, 2000);
-
       } else {
         const errorData = await response.json();
 

@@ -11,7 +11,7 @@ const Login = () => {
   const [open, setOpen] = useState(false);
   const [openUserNotFound, setOpenUserNotFound] = useState(false);
   const [openIncorrectPassword, setOpenIncorrectPassword] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ const Login = () => {
       if (data.message === 'Logged in successfully') {
         localStorage.setItem('username_stitch', data.name);
         localStorage.setItem('userData', JSON.stringify(data));
-        history.push('/shop');
+        navigate('/shop'); // Change navigate.push('/shop') to navigate('/shop')
       } else if (data.message === 'Email not verified') {
         setOpen(true);
       } else if (data.message === 'User not found') {
@@ -53,6 +53,7 @@ const Login = () => {
 
     setIsLoading(false);
   };
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;

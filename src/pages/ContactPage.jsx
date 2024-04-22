@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material'; // Import Material-UI components
 import { Footer, Navbar } from "../Components";
-
+import './ContactPage.css'
 const ContactPage = () => {
   return (
     <>
@@ -43,7 +43,7 @@ const ContactPage = () => {
                   variant="contained"
                   color="primary"
                   className="my-2 px-4 mx-auto"
-                  disabled
+                  
                 >
                   Send
                 </Button>
