@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import './App.css';
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound } from "./pages"
-import ResetPassword from './components/ResetPassword';
 import FemaleOverShirt from './components/FemaleOverShirt';
 import MaleTank from './components/MaleTank';
 import FemaleSweatShirt from './components/FemaleSweatShirt';
@@ -42,7 +41,6 @@ root.render(
         <Route path="/" element={<Navigation />} />
         <Route path="/activate" element={<AccountActivationSuccess />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/male-hoodie" element={<MaleHoodie />} />
         <Route path="/female-hoodie" element={<FemaleHoodie />} />
