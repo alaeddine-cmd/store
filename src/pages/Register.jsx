@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography, Container, Grid } from '@mui/material'; // Import Material-UI components
 import { Footer, Navbar } from '../Components';
-
+import './Register.css'
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -102,7 +102,6 @@ const Register = () => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
             fullWidth
             disabled={isLoading}
             style={{ marginTop: '20px' }}

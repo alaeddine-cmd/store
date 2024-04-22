@@ -14,7 +14,7 @@ const AboutPage = () => {
           About Us
         </Typography>
         <hr />
-        <Typography variant="body1" className="lead text-center about-us-text">
+        <Typography variant="body1" className="lead about-us-text">
           At Stitch Switch, we specialize in crafting high-quality embroidered clothing for both men and women. With meticulous attention to detail, we bring your designs to life on hoodies, shirts, and more. Our passion lies in creating unique pieces that reflect your individual style. Whether you're looking for a standout piece to elevate your wardrobe or seeking the perfect canvas for your brand's logo, we've got you covered. Our custom embroidery service allows you to add a personal touch to your apparel, making each piece truly one-of-a-kind. At Stitch Switch, we understand the importance of quality, creativity, and attention to detail. Let us help you make a statement with our expert embroidery services. Explore the possibilities and express yourself with confidence.
         </Typography>
 

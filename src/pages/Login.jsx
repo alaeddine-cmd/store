@@ -76,7 +76,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <Container component="main" maxWidth="xs" style={{ marginTop: '50px', marginBottom: '200px'}}>
+      <Container component="main" maxWidth="xs" style={{ marginTop: '50px', marginBottom: '200px' }}>
         <Typography variant="h4" align="center" gutterBottom>
           Login
         </Typography>
@@ -121,9 +121,9 @@ const Login = () => {
           </div>
         </form>
         <div className="my-3">
-          <Typography>
+          <Typography variant="body2">
             New Here?{' '}
-            <Link to="/register" className="text-decoration-underline text-info">
+            <Link to="/register" >
               Register
             </Link>
           </Typography>
