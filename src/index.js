@@ -7,20 +7,20 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import './App.css';
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound } from "./pages"
-import FemaleOverShirt from './components/FemaleOverShirt';
-import MaleTank from './components/MaleTank';
-import FemaleSweatShirt from './components/FemaleSweatShirt';
-import MaleSweatShirt from './components/MaleSweatShirt';
-import FemaleShirt from './components/FemaleShirt';
-import MaleShirt from './components/MaleShirt';
-import FemaleHoodie from './components/FemaleHoodie';
-import MaleHoodie from './components/MaleHoodie';
-import ForgotPassword from './components/ForgotPassword';
-import AccountActivationSuccess from './components/AccountActivationSuccess';
-import youtubeLogo from './components/youtube.png';
-import pinterestLogo from './components/pinterest.png';
-import facebookLogo from './components/facebook.png';
-import instagramLogo from './components/instagram.png';
+import FemaleOverShirt from './Components/FemaleOverShirt';
+import MaleTank from './Components/MaleTank';
+import FemaleSweatShirt from './Components/FemaleSweatShirt';
+import MaleSweatShirt from './Components/MaleSweatShirt';
+import FemaleShirt from './Components/FemaleShirt';
+import MaleShirt from './Components/MaleShirt';
+import FemaleHoodie from './Components/FemaleHoodie';
+import MaleHoodie from './Components/MaleHoodie';
+import ForgotPassword from './Components/ForgotPassword';
+import AccountActivationSuccess from './Components/AccountActivationSuccess';
+import youtubeLogo from './Components/youtube.png';
+import pinterestLogo from './Components/pinterest.png';
+import facebookLogo from './Components/facebook.png';
+import instagramLogo from './Components/instagram.png';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

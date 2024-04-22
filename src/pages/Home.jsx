@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Main, Product, Footer } from "../components";
+import { Navbar, Main, Product, Footer } from "../Components";
 
 function Home() {
   const scrollToProduct = () => {

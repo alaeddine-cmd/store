@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Footer, Navbar } from '../components';
+import { Footer, Navbar } from '../Components';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Footer, Navbar } from "../components";
-import mens from "../components/mens.jpg";
-import women from "../components/women.jpeg";
+import { Footer, Navbar } from "../Components";
+import mens from "../Components/mens.jpg";
+import women from "../Components/women.jpeg";
 import './AboutPage.css'
 
 const AboutPage = () => {

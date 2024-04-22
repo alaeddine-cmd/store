@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer, Navbar, Product } from "../components"
+import { Footer, Navbar, Product } from "../Components"
 
 const Products = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import logo from "../components/logo.png";
+import logo from "../Components/logo.png";
 import './Navbar.css';
 
 const Navbar = () => {

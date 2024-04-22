@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Footer, Navbar } from '../components';
+import { Footer, Navbar } from '../Components';
 
 const Login = () => {
   const [email, setEmail] = useState('');
