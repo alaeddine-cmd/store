@@ -76,7 +76,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={{ marginTop: '50px', marginBottom: '200px'}}>
         <Typography variant="h4" align="center" gutterBottom>
           Login
         </Typography>
