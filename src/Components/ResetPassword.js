@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './ResetPassword.css'; // Import your custom CSS file
 import { useNavigate } from 'react-router-dom'; // Import useHistory for navigation
 
 function ResetPassword() {
