@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './MaleHoodie.css'; // Ensure all relevant styles from Examples.css are also included here
+import './MaleHoodie.css';
 import './MaleHoodie_copy.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';

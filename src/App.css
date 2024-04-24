@@ -148,8 +148,10 @@ a:hover {
 .how-it-works {
   background: #ffffff; /* Change color if necessary */
   padding: 2rem;
+  margin-left: 10%!important;
+  margin-top: 5%;
+
   max-width: 1200px;
-  margin: 2rem auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
