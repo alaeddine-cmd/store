@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MaleHoodie.css'; // Ensure all relevant styles from Examples.css are also included here
+import './MaleHoodie_copy.css';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
@@ -251,7 +252,8 @@ function MaleHoodie() {
     return (
         <> <header className="App-header">
             <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
-                className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>        </header>
+                className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
+        </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
                 <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" alt='idea' /></button>
 

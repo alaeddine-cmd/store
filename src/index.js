@@ -21,6 +21,7 @@ import youtubeLogo from './Components/youtube.png';
 import pinterestLogo from './Components/pinterest.png';
 import facebookLogo from './Components/facebook.png';
 import instagramLogo from './Components/instagram.png';
+import './Components/MaleHoodie_copy.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

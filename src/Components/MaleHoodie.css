@@ -1,15 +1,5 @@
-/* Base and reset styles */
-@media (max-width: 768px) {
-  .thumbnail {
-    max-width: 80px; /* Slightly smaller thumbnails on smaller screens */
-  }
-}
 
-@media (max-width: 480px) {
-  .thumbnail {
-    max-width: 60px; /* Even smaller thumbnails on very small screens */
-  }
-}
+
 
 
 .hoodie-image {
@@ -91,49 +81,11 @@ button, .custom-file-upload {
   transition: all 0.3s ease;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .main-display {
-    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
-  }
 
-  .color-swatch {
-    width: 35px;
-    height: 35px; /* Adjust the swatches for smaller screens */
-  }
 
-  button, .custom-file-upload {
-    width: 100%; /* Full width buttons for easier touch access */
-    margin: 10px 0;
-  }
-}
 
-.fullscreen-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-    top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  flex-direction: row;
-  z-index: 2000; /* Make sure this is higher than the side-menu's z-index */
-}
 
-@media (max-width: 768px) {
-  .sidebar {
-      flex: 0 0 30%; /* Take up more width on smaller screens */
-  }
-}
 
-@media (max-width: 480px) {
-  .sidebar {
-      flex: 0 0 100%; /* Full width on very small screens */
-      order: -1; /* Render above the main content */
-  }
-}
 .side-menu {
   position: fixed; /* Fixed position to the side of the screen */
   top: 0;
@@ -167,17 +119,8 @@ button, .custom-file-upload {
   vertical-align: middle; /* Align it vertically with the text */
   margin-bottom: 1rem;
 }
-@media (max-width: 768px) {
-  .fullscreen-content img {
-    max-height: 60vh; /* you can adjust the max-height for smaller screens */
-  }
-}
 
-@media (max-width: 480px) {
-  .fullscreen-content img {
-    max-height: 50vh; /* further adjust for very small screens */
-  }
-}
+
 .fullscreen-controls {
   display: flex;
   justify-content: center;
@@ -222,7 +165,7 @@ button, .custom-file-upload {
 
 
 .button-idea {
-  padding-left: 2.5rem; /* Add some space to the right of the image */
+  padding-left: 2.5rem; 
 }
 .button-idea:hover{
   background-color: hsl(56, 96%, 78%);
@@ -381,52 +324,8 @@ button, .custom-file-upload {
 button:active, .custom-file-upload:active {
   transform: scale(0.98);
 }
-@media (max-width: 768px) {
-.close-btn{
-  right: -105px;
-}
-}
-/* Responsive media query */
-@media (max-width: 768px) {
-  .thumbnail {
-    width: 15%; /* Larger percentage for smaller screen to fit in two columns */
-  }
-  .main-display {
-    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
-  }
-
-  
 
 
-  .main-display {
-    max-width: 90%; /* Allow the main image to take up more space on smaller screens */
-  }
-
-  .color-swatch {
-    width: 35px;
-    height: 35px; /* Adjust the swatches for smaller screens */
-  }
-
-  button, .custom-file-upload {
-    width: 100%; /* Full width buttons for easier touch access */
-    margin: 10px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .hoodie-image {
-    width: 100%; /* Full width on extra small screens */
-  }
-
-  .main-display {
-    margin-top: 10px;
-  }
-
-  button, .custom-file-upload {
-    width: calc(50% - 10px); /* Half width minus margin for two buttons side by side */
-    font-size: 0.9rem; /* Slightly smaller font on mobile for buttons */
-  }
-}
 
 .color-swatch.white {
   background-color: #ffffff;

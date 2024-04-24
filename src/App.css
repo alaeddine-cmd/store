@@ -9,13 +9,7 @@
 }
 
 /* Header styles */
-.App-header {
-  background-color: #212529;
-  color: #f8f8f8;
-  padding: 20px;
-  text-align: center;
 
-}
 
 .modal-overlay {
   position: fixed;
@@ -39,14 +33,6 @@
   overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
 }
 
-/* Adjust modal size for smaller screens */
-@media screen and (max-width: 768px) {
-  .modal-content {
-    width: 90%; /* Adjust width percentage for smaller screens */
-    max-width: none; /* Remove maximum width */
-    max-height: none; /* Remove maximum height */
-  }
-}
 
 
 .store-popup-container {
@@ -96,18 +82,6 @@
   max-height: 100px;
 }
 
-.App-header img {
-  max-width: 80%; /* Adjusted for better responsiveness */
-  max-height: 80px; /* Limiting height for consistency */
-  height: auto;
-}
-
-.App-header h1 {
-  font-size: calc(1.5rem + 1vw); /* Slightly larger base size for readability */
-  font-weight: 300; /* Lighter font-weight for a more modern and elegant look */
-  letter-spacing: 10px; /* Add some spacing between letters */
-  /* margin-bottom: 1rem; */ 
-}
 
 /* Category Container */
 .category-container {
@@ -169,38 +143,12 @@ a:hover {
   text-decoration: underline; /* Underline on hover for clarity */
 }
 
-@media (max-width: 768px) {
-  .category-container {
-    padding: 50px 20px; /* Less padding on smaller screens */
-  }
 
-  .category-box img {
-    /* Ensure that the image scales down with the box */
-    height: 100%; /* new line */
-    max-height: none; /* Override the max-height */
-  }
-
-  .category-box {
-    /* Make sure the text scales down on smaller screens */
-    flex-direction: column; /* Stack elements vertically on smaller screens */
-  }
-
-  .image-overlay {
-    /* Make the text overlay always visible for touch devices */
-    background-color: rgba(0, 0, 0, 0.5); /* Ensure background is visible */
-    opacity: 1; /* Set the overlay to be always visible on touch devices */
-  }
-  .category-box:hover .image-overlay {
-    /* Keep the overlay visible even on hover for touch devices */
-    opacity: 1; /* No change on hover */
-    background-color: rgba(0, 0, 0, 0.5); /* No change on hover */
-  }
-}
 /* How It Works Section Styling */
 .how-it-works {
   background: #ffffff; /* Change color if necessary */
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 100px;
   margin: 2rem auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -244,73 +192,7 @@ a:hover {
 }
 
 /* Add responsive considerations */
-@media (max-width: 768px) {
-  .how-it-works {
-    padding: 1rem;
-  }
 
-  .how-it-works h2 {
-    font-size: 2rem;
-  }
-
-  .how-it-works p {
-    font-size: 1rem;
-  }
-
-  .how-it-works ol {
-    text-align: center;
-  }
-
-  .how-it-works li {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 560px) {
-  .App-header {
-    padding: 15px; /* Smaller padding */
-  }
-
-  .App-header h1 {
-    font-size: 1.2rem; /* Smaller font size for the header */
-    letter-spacing: 5px; /* Less letter-spacing */
-  }
-
-  .category-container {
-    padding: 20px; /* Smaller padding around the grid */
-  }
-
-  .category-box {
-    /* Flex layout for the category box to stack items */
-    display: flex;
-    flex-direction: column;
-  }
-
-  .image-overlay {
-    opacity: 1; /* Make the overlay always visible */
-    background: rgba(0, 0, 0, 0.5); /* Re-apply the semi-transparent background */
-  }
-  .category-box img {
-    max-height: none; /* Override the max-height for small devices */
-    height: 100px; /* Fixed height for images to make them smaller */
-    object-fit: contain; /* Adjust the object-fit */
-  }
-  .category-box:hover .image-overlay {
-    /* Keep the overlay visible even on hover for touch devices */
-    opacity: 1; /* No change on hover */
-    background-color: rgba(0, 0, 0, 0.5); /* No change on hover */
-  }
-  /* Adjust the overlay to fit the smaller images */
-  .category-box .image-overlay {
-    display: block; /* Make overlay a block to cover the image */
-    position: static; /* Static position to flow with document */
-    background: transparent; /* Remove the semi-transparent background */
-    color: #333; /* Darker color for better visibility on light images */
-    padding: 10px; /* Padding inside the overlay */
-    text-align: center; /* Center the text */
-    opacity: 1; /* Make the overlay always visible */
-  }
-}/* Add this CSS block for the social icons */
 .social-icons {
   display: flex;
   justify-content: center; /* Center icons horizontally */
@@ -335,25 +217,6 @@ a:hover {
   transform: scale(1.2);
 }
 
-/* Update this existing media query */
-@media screen and (max-width: 768px) {
-  .App-header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .social-icons {
-    justify-content: center; /* Center social icons on small screens */
-    margin-top: 20px;
-    margin-right: 10px;
-    margin-bottom: 20px; /* Add margin at the bottom */
-  }
-
-  .social-icon img {
-    width: 30px;
-    height: 30px;
-  }
-}
 
 .footer-text {
   color: #666666; /* Greish color */
