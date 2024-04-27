@@ -66,6 +66,7 @@ function MaleHoodie() {
             // Consider offering the user to choose a higher scale for better quality
             const scale = window.devicePixelRatio * 2; // Example: doubling the scale for better quality
             const canvas = await html2canvas(activeDisplayRef, {
+                windowWidth : "1280px",
                 scale: scale,
                 useCORS: true,
                 logging: true, // Consider turning off in production
@@ -250,10 +251,11 @@ function MaleHoodie() {
         }
     };
     return (
-        <> <header className="App-header">
-            <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
-                className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
-        </header>
+        <>
+            <header className="App-header">
+                <h1><Link to="/"><img src="/assets/logo_2.png" style={{ maxWidth: "30px", height: "auto", marginRight: "15px" }}
+                    className="needle" alt="Stitch Switch" /></Link>Stitch Switch</h1>
+            </header>
             <div className="MaleHoodie" style={{ backgroundImage: `url(${backgroundImage})` }}>
                 <button className="button-idea" onClick={() => setSideMenuOpen(!sideMenuOpen)}>Design Ideas<img src="/assets/lamp.png" className="idea" alt='idea' /></button>
 
