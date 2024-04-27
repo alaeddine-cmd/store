@@ -57,7 +57,7 @@ function MaleHoodie() {
         link.download = filename;
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        //document.body.removeChild(link);
     };
     const handleDownload = async () => {
         const activeDisplayRef = hoodieRefs[selectedView].current;
@@ -66,11 +66,11 @@ function MaleHoodie() {
             // Consider offering the user to choose a higher scale for better quality
             const scale = window.devicePixelRatio * 2; // Example: doubling the scale for better quality
             const canvas = await html2canvas(activeDisplayRef, {
-                windowWidth : "1280px",
                 scale: scale,
                 useCORS: true,
                 logging: true, // Consider turning off in production
             });
+            console.log(canvas)
 
             // Example: allowing user to choose format and quality. Here we use JPEG for illustration.
             const imageQuality = 0.9; // Quality from 0 to 1, applicable for 'image/jpeg'
